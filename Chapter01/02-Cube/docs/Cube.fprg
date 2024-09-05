@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Cube"/>
+        <attribute name="authors" value="Victor Cuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-04 09:37:02 p. m."/>
+        <attribute name="created" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDswOToyODowMyBwLiBtLjsyOTI2"/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDswOTozNzowMiBwLiBtLjsxOzMwMzM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="* The program allows the user to input a value for an edge of a cube,&#13;&#10;* calculates the area of one side of the cube, the total surface area&#13;&#10;* of the cube, and the volume of the cube."/>
+            <declare name="edge, sideArea, totalArea, volume" type="Real" array="False" size=""/>
+            <assign variable="edge" expression="ReadNumber(&quot;Enter the edge of the cube: &quot;)"/>
+            <assign variable="sideArea" expression="edge * edge"/>
+            <assign variable="totalArea" expression="sideArea * 6"/>
+            <assign variable="volume" expression="edge * edge * edge"/>
+            <output expression="&quot;The area of one side of the cube is: &quot; &amp; sideArea" newline="True"/>
+            <output expression="&quot;The total surface area of the cube is: &quot; &amp; totalArea" newline="True"/>
+            <output expression="&quot;The volume of the cube is: &quot; &amp; volume" newline="True"/>
+            <output expression="&quot;Program ends.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="userInput">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="userInput" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="userInput"/>
+        </body>
+    </function>
+</flowgorithm>
