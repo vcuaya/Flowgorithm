@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="WallArea"/>
+        <attribute name="authors" value="Victor Cuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-04 11:59:31 p. m."/>
+        <attribute name="created" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDsxMTo0MjowNyBwLiBtLjsyOTE5"/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDsxMTo1OTozMSBwLiBtLjsxOzMwMzI="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="a) Representar la l&#243;gica de un programa que permita al usuario introducir&#13;&#10;valores para el ancho y el largo de una pared en metros. El programa&#13;&#10;da salida al &#225;rea de la pared en metros cuadrados.&#13;&#10;&#13;&#10;a) Represent the logic of a program that allows the user to enter&#13;&#10;values for the width and length of a wall in meters. The program&#13;&#10;outputs the area of the wall in square meters."/>
+            <declare name="width, length, area" type="Real" array="False" size=""/>
+            <assign variable="width" expression="ReadNumber(&quot;Enter the width of the wall in meters: &quot;)"/>
+            <assign variable="length" expression="ReadNumber(&quot;Enter the length of the wall in meters: &quot;)"/>
+            <assign variable="area" expression="CalculateArea(width, length)"/>
+            <output expression="&quot;The area of the wall is &quot; &amp; area &amp; &quot; square meters.&quot;" newline="True"/>
+            <output expression="&quot;Program ended.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalculateArea" type="Real" variable="area">
+        <parameters>
+            <parameter name="width" type="Real" array="False"/>
+            <parameter name="length" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="area" type="Real" array="False" size=""/>
+            <assign variable="area" expression="width * length"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
