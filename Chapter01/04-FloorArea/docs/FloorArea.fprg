@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="FloorArea"/>
+        <attribute name="authors" value="Victor Cuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-04 11:06:37 p. m."/>
+        <attribute name="created" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDsxMTowMDoyNyBwLiBtLjsyOTE1"/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDsxMTowNjozNyBwLiBtLjsxOzMwMzA="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Representar la l&#243;gica de un programa que permita al usuario&#13;&#10;introducir valores para el ancho y el largo del piso de un&#13;&#10;sal&#243;n en metros. El programa da salida al &#225;rea del piso en&#13;&#10;metros cuadrados.&#13;&#10;&#13;&#10;Represent the logic of a program that allows the user to&#13;&#10;enter values for the width and length of the floor of a&#13;&#10;room in meters. The program outputs the area of the floor&#13;&#10;in square meters."/>
+            <declare name="width, length, area" type="Real" array="False" size=""/>
+            <assign variable="width" expression="ReadNumber(&quot;Enter the width of the floor in meters: &quot;)"/>
+            <assign variable="length" expression="ReadNumber(&quot;Enter the length of the floor in meters: &quot;)"/>
+            <assign variable="area" expression="width * length"/>
+            <output expression="&quot;The area of the floor is &quot; &amp; area &amp; &quot; square meters.&quot;" newline="True"/>
+            <output expression="&quot;Program ends.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
