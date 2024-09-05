@@ -4,19 +4,25 @@
         <attribute name="name" value="WallArea"/>
         <attribute name="authors" value="Victor Cuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-09-04 11:59:31 p. m."/>
+        <attribute name="saved" value="2024-09-05 12:53:24 a. m."/>
         <attribute name="created" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDsxMTo0MjowNyBwLiBtLjsyOTE5"/>
-        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDsxMTo1OTozMSBwLiBtLjsxOzMwMzI="/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNTsxMjo1MzoyNCBhLiBtLjsyOzMwMTY="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <comment text="a) Representar la l&#243;gica de un programa que permita al usuario introducir&#13;&#10;valores para el ancho y el largo de una pared en metros. El programa&#13;&#10;da salida al &#225;rea de la pared en metros cuadrados.&#13;&#10;&#13;&#10;a) Represent the logic of a program that allows the user to enter&#13;&#10;values for the width and length of a wall in meters. The program&#13;&#10;outputs the area of the wall in square meters."/>
-            <declare name="width, length, area" type="Real" array="False" size=""/>
+            <comment text="a) Representar la l&#243;gica de un programa que permita al usuario introducir&#13;&#10;valores para el ancho y el largo de una pared en metros. El programa&#13;&#10;da salida al &#225;rea de la pared en metros cuadrados.&#13;&#10;&#13;&#10;b) Modifique el programa para permitir al usuario introducir el precio de&#13;&#10;un gal&#243;n de pintura. Suponga que un gal&#243;n de pintura cubre 35 metros cuadrados&#13;&#10;de una pared. El programa da salida al n&#250;mero de galones necesarios y el costo&#13;&#10;del trabajo. (Para este ejercicio suponga que no necesita tomar en cuenta las&#13;&#10;ventanas o puertas y que puede comprar galones de pintura completos.).&#13;&#10;&#13;&#10;a) Represent the logic of a program that allows the user to enter&#13;&#10;values for the width and length of a wall in meters. The program&#13;&#10;outputs the area of the wall in square meters.&#13;&#10;&#13;&#10;b) Modify the program to allow the user to enter the price of&#13;&#10;a gallon of paint. Assume that a gallon of paint covers 35 square meters&#13;&#10;of a wall. The program outputs the number of gallons needed and the cost&#13;&#10;of the work. (For this exercise assume that you do not need to take into account the&#13;&#10;windows or doors and that you can buy complete gallons of paint.)."/>
+            <declare name="width, length, area, price, gallons, total, gallonCoverage" type="Real" array="False" size=""/>
+            <assign variable="gallonCoverage" expression="35"/>
             <assign variable="width" expression="ReadNumber(&quot;Enter the width of the wall in meters: &quot;)"/>
             <assign variable="length" expression="ReadNumber(&quot;Enter the length of the wall in meters: &quot;)"/>
             <assign variable="area" expression="CalculateArea(width, length)"/>
             <output expression="&quot;The area of the wall is &quot; &amp; area &amp; &quot; square meters.&quot;" newline="True"/>
+            <assign variable="price" expression="ReadNumber(&quot;Enter the price of a gallon of pain: &quot;)"/>
+            <assign variable="gallons" expression="CalculateGallons(area, gallonCoverage)"/>
+            <assign variable="total" expression="CalculateTotal(gallons, price)"/>
+            <output expression="&quot;You will need &quot; &amp; gallons &amp; &quot; gallons of paint.&quot;" newline="True"/>
+            <output expression="&quot;The total cost of the work is $&quot; &amp; total" newline="True"/>
             <output expression="&quot;Program ended.&quot;" newline="True"/>
         </body>
     </function>
@@ -30,6 +36,26 @@
             <assign variable="area" expression="width * length"/>
         </body>
     </function>
+    <function name="CalculateGallons" type="Real" variable="gallons">
+        <parameters>
+            <parameter name="area" type="Real" array="False"/>
+            <parameter name="coverage" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="gallons" type="Real" array="False" size=""/>
+            <assign variable="gallons" expression="RoundUp(area / coverage)"/>
+        </body>
+    </function>
+    <function name="CalculateTotal" type="Real" variable="total">
+        <parameters>
+            <parameter name="gallons" type="Real" array="False"/>
+            <parameter name="price" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="total" type="Real" array="False" size=""/>
+            <assign variable="total" expression="gallons * price"/>
+        </body>
+    </function>
     <function name="ReadNumber" type="Real" variable="number">
         <parameters>
             <parameter name="message" type="String" array="False"/>
@@ -38,6 +64,21 @@
             <declare name="number" type="Real" array="False" size=""/>
             <output expression="message" newline="True"/>
             <input variable="number"/>
+        </body>
+    </function>
+    <function name="RoundUp" type="Integer" variable="rounded">
+        <parameters>
+            <parameter name="number" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="rounded" type="Integer" array="False" size=""/>
+            <assign variable="rounded" expression="number"/>
+            <if expression="number - rounded &gt; 0">
+                <then>
+                    <assign variable="rounded" expression="rounded + 1"/>
+                </then>
+                <else/>
+            </if>
         </body>
     </function>
 </flowgorithm>
