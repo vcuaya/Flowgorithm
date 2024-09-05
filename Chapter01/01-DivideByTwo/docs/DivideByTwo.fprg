@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="New"/>
+        <attribute name="authors" value="Victor Cuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-04 06:56:03 p. m."/>
+        <attribute name="created" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDswNjozOToxNyBwLiBtLjsyOTMw"/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDswNjo1NjowMyBwLiBtLjsyOzMwMzM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="This program divides a number by 2"/>
+            <declare name="number, result" type="Integer" array="False" size=""/>
+            <assign variable="number" expression="ReadNumber(&quot;Introduce un n&#250;mero&quot;)"/>
+            <assign variable="result" expression="Divide(number, 2)"/>
+            <output expression="&quot;El resultado de dividir &quot; &amp; number &amp; &quot; entre 2 es &quot; &amp; result" newline="True"/>
+            <output expression="&quot;Fin del programa&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="Divide" type="Real" variable="result">
+        <parameters>
+            <parameter name="number" type="Real" array="False"/>
+            <parameter name="divisor" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="result" type="Real" array="False" size=""/>
+            <assign variable="result" expression="number / divisor"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="userInput">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="userInput" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="userInput"/>
+        </body>
+    </function>
+</flowgorithm>
