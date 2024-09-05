@@ -16,13 +16,16 @@ class Program
 {
     static void Main(string[] args)
     {
-        double width, length, area;
+        double width, length, area, tiles;
+        const double TILE_AREA = 0.09;
 
         width = ReadNumber("Enter the width of the floor in meters: ");
         length = ReadNumber("Enter the length of the floor in meters: ");
         area = width * length;
+        tiles = area / TILE_AREA;
 
         Console.WriteLine($"The area of the floor is {area} square meters.");
+        Console.WriteLine($"You need {tiles:N2} tiles to cover the floor.");
         Console.WriteLine("Press any key to exit...");
         Console.ReadKey();
     }
