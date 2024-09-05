@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="SalespersonPayment"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-05 01:02:23 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDU7MTI6NDg6MzUgcC4gbS47MzQyMw=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDU7MDE6MDI6MjMgcC4gbS47MTszNTE2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Represente la l&#243;gica de un programa que permita al usuario&#13;&#10;introducir valores para el salario base, las ventas totales&#13;&#10;y la tasa de comisi&#243;n de un vendedor. El programa calcula&#13;&#10;y da salida al pago del vendedor agregando el salario base&#13;&#10;al producto de las ventas totales y la tasa de comisi&#243;n.&#13;&#10;&#13;&#10;Represent the logic of a program that allows the user to&#13;&#10;enter values for the base salary, total sales, and the&#13;&#10;commission rate of a salesperson. The program calculates&#13;&#10;and outputs the salesperson's payment by adding the base&#13;&#10;salary to the product of the total sales and the commission."/>
+            <declare name="baseSalary, totalSales, comissionRate, payment" type="Real" array="False" size=""/>
+            <assign variable="baseSalary" expression="ReadNumber(&quot;Enter the base salary: &quot;)"/>
+            <assign variable="totalSales" expression="ReadNumber(&quot;Enter the total sales: &quot;)"/>
+            <assign variable="comissionRate" expression="ReadNumber(&quot;Enter the commission rate: &quot;)"/>
+            <assign variable="payment" expression="CalculatePayment(baseSalary, totalSales, comissionRate)"/>
+            <output expression="&quot;The payment is: &quot; &amp; payment" newline="True"/>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalculatePayment" type="Real" variable="payment">
+        <parameters>
+            <parameter name="baseSalary" type="Real" array="False"/>
+            <parameter name="totalSales" type="Real" array="False"/>
+            <parameter name="commissionRate" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="payment" type="Real" array="False" size=""/>
+            <assign variable="payment" expression="baseSalary + totalSales * commissionRate / 100"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
