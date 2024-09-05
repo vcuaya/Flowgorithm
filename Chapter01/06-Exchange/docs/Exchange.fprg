@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Exchange"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-05 11:22:24 a. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDU7MTA6NDY6NDYgYS4gbS47MzQwNg=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDU7MTE6MjI6MjQgYS4gbS47MTszNTA1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Investigue las tasas actuales de cambio monetario. Represente&#13;&#10;la l&#243;gica de un programa que permita al usuario introducir un&#13;&#10;n&#250;mero de d&#243;lares y convertirlos a euros y a yenes.&#13;&#10;&#13;&#10;1 d&#243;lar = 0.85 euros&#13;&#10;1 d&#243;lar = 110.31 yenes&#13;&#10;&#13;&#10;Investigate the current exchange rates. Represent the logic of a&#13;&#10;program that allows the user to enter a number of dollars and&#13;&#10;convert them to euros and yen.&#13;&#10;&#13;&#10;1 dollar = 0.85 euros&#13;&#10;1 dollar = 110.31 yen"/>
+            <declare name="dollars, euros, yenes" type="Real" array="False" size=""/>
+            <assign variable="dollars" expression="ReadNumber(&quot;Enter the amount of dollars: &quot;)"/>
+            <assign variable="euros" expression="CalculateEuros(dollars)"/>
+            <assign variable="yenes" expression="CalculateYenes(dollars)"/>
+            <output expression="&quot;The amount of dollars is: &quot; &amp; dollars" newline="True"/>
+            <output expression="&quot;The amount of euros is: &quot; &amp; euros" newline="True"/>
+            <output expression="&quot;The amount of yenes is: &quot; &amp; yenes" newline="True"/>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalculateEuros" type="Real" variable="euros">
+        <parameters>
+            <parameter name="dollars" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="euros, exchangeRate" type="Real" array="False" size=""/>
+            <assign variable="exchangeRate" expression="0.85"/>
+            <assign variable="euros" expression="dollars * exchangeRate"/>
+        </body>
+    </function>
+    <function name="CalculateYenes" type="Real" variable="yenes">
+        <parameters>
+            <parameter name="dollars" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="yenes, exchangeRate" type="Real" array="False" size=""/>
+            <assign variable="exchangeRate" expression="110.31"/>
+            <assign variable="yenes" expression="dollars * exchangeRate"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
