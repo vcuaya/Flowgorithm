@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Product"/>
+        <attribute name="authors" value="Victor Cuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-04 10:30:26 p. m."/>
+        <attribute name="created" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDsxMDoyMzowNiBwLiBtLjsyOTE2"/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNDsxMDozMDoyNiBwLiBtLjsxOzMwMjQ="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Representar la l&#243;gica de un programa que permite al usuario introducir&#13;&#10;dos valores. El programa da salida al producto de ambos valores.&#13;&#10;&#13;&#10;Represent the logic of a program that allows the user to input two values.&#13;&#10;The program outputs the product of both values."/>
+            <declare name="numberA, numberB, result" type="Real" array="False" size=""/>
+            <assign variable="numberA" expression="ReadNumber(&quot;Enter the first number: &quot;)"/>
+            <assign variable="numberB" expression="ReadNumber(&quot;Enter the second number: &quot;)"/>
+            <assign variable="result" expression="Product(numberA, numberB)"/>
+            <output expression="&quot;The product of &quot; &amp; numberA &amp; &quot; and &quot; &amp; numberB &amp; &quot; is: &quot; &amp; result" newline="True"/>
+            <output expression="&quot;Program ends.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="Product" type="Real" variable="result">
+        <parameters>
+            <parameter name="numberA" type="Real" array="False"/>
+            <parameter name="numberB" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="result" type="Real" array="False" size=""/>
+            <assign variable="result" expression="numberA * numberB"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="userInput">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="userInput" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="userInput"/>
+        </body>
+    </function>
+</flowgorithm>
