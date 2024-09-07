@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="BodyMassIndex"/>
+        <attribute name="authors" value="Victor Cuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-06 11:44:25 p. m."/>
+        <attribute name="created" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNjsxMTozMDowMCBwLiBtLjsyOTEx"/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNjsxMTo0NDoyNSBwLiBtLjsxOzMwMzE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Create a program that calculates the Body Mass Index (BMI) of a person."/>
+            <declare name="weight, height, weightKg, heightM, bmi" type="Real" array="False" size=""/>
+            <assign variable="weight" expression="ReadNumber(&quot;Enter the weight in pounds: &quot;)"/>
+            <assign variable="height" expression="ReadNumber(&quot;Enter the height in inches: &quot;)"/>
+            <assign variable="weightKg" expression="weight * 0.453592"/>
+            <assign variable="heightM" expression="height * 0.0254"/>
+            <assign variable="bmi" expression="CalculateBMI(weightKg, heightM)"/>
+            <output expression="&quot;The BMI value is: &quot; &amp; bmi" newline="True"/>
+            <output expression="&quot;Program finished.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalculateBMI" type="Real" variable="bmi">
+        <parameters>
+            <parameter name="weightKg" type="Real" array="False"/>
+            <parameter name="heightM" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="bmi" type="Real" array="False" size=""/>
+            <assign variable="bmi" expression="weightKg / (heightM * heightM)"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
