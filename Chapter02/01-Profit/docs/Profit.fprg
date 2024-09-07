@@ -4,20 +4,27 @@
         <attribute name="name" value="Profit"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-09-06 10:12:31 p. m."/>
+        <attribute name="saved" value="2024-09-06 10:43:29 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDU7MDE6NDg6MjkgcC4gbS47MzQyNA=="/>
         <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDY7MDk6MDE6MTcgYS4gbS47MTszNTEy"/>
-        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNjsxMDoxMjozMSBwLiBtLjsyOzMwMjM="/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNjsxMDo0MzoyOSBwLiBtLjszOzMwMzU="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <comment text="a) Calcular la ganancia.&#13;&#10;a) Calculate the profit."/>
-            <declare name="sellingPrice, purchasePrice, profit" type="Real" array="False" size=""/>
+            <comment text="a) Calcular la ganancia.&#13;&#10;b) Calcular la ganancia, mientras el usuario no ingrese 0.&#13;&#10;a) Calculate the profit.&#13;&#10;b) Calculate the profit, while the user does not enter 0."/>
+            <declare name="sellingPrice, purchasePrice, profit, totalProfit, centinelProfit" type="Real" array="False" size=""/>
+            <assign variable="centinelProfit" expression="0"/>
+            <assign variable="totalProfit" expression="0"/>
             <assign variable="sellingPrice" expression="ReadNumber(&quot;Enter the selling price: &quot;)"/>
-            <assign variable="purchasePrice" expression="ReadNumber(&quot;Enter the purchase price: &quot;)"/>
-            <assign variable="profit" expression="sellingPrice - purchasePrice"/>
-            <output expression="&quot;The profit is: &quot; &amp; profit" newline="True"/>
+            <while expression="sellingPrice &lt;&gt; centinelProfit">
+                <assign variable="purchasePrice" expression="ReadNumber(&quot;Enter the purchase price: &quot;)"/>
+                <assign variable="profit" expression="sellingPrice - purchasePrice"/>
+                <assign variable="totalProfit" expression="totalProfit + profit"/>
+                <output expression="&quot;The profit is: &quot; &amp; profit" newline="True"/>
+                <assign variable="sellingPrice" expression="ReadNumber(&quot;Enter the selling price: &quot;)"/>
+            </while>
+            <output expression="&quot;The total profit is: &quot; &amp; totalProfit" newline="True"/>
             <output expression="&quot;Program finished&quot;" newline="True"/>
         </body>
     </function>
