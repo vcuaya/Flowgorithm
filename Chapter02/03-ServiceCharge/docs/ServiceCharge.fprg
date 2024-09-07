@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ServiceCharge"/>
+        <attribute name="authors" value="Victor Cuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-07 01:26:20 a. m."/>
+        <attribute name="created" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNzsxMjo1NTozNSBhLiBtLjsyOTEz"/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNzswMToyNjoyMCBhLiBtLjsxOzMwMTE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Calculate the service charge for a cleaning service based on the number of rooms cleaned."/>
+            <declare name="centinelValue, customerName" type="String" array="False" size=""/>
+            <assign variable="centinelValue" expression="&quot;ZZZZ&quot;"/>
+            <declare name="bathroomsCleaned, roomsCleaned, serviceCharge" type="Real" array="False" size=""/>
+            <assign variable="customerName" expression="ReadString(&quot;Enter the customer's name or ZZZZ to stop: &quot;)"/>
+            <while expression="customerName &lt;&gt; centinelValue">
+                <assign variable="bathroomsCleaned" expression="ReadNumber(&quot;Enter the number of bathrooms cleaned: &quot;)"/>
+                <assign variable="roomsCleaned" expression="ReadNumber(&quot;Enter the number of rooms cleaned: &quot;)"/>
+                <assign variable="serviceCharge" expression="CalculateCharge(bathroomsCleaned, roomsCleaned)"/>
+                <output expression="&quot;Customer's name: &quot; &amp; customerName &amp; &quot; Service charge: $&quot; &amp; serviceCharge" newline="True"/>
+                <assign variable="customerName" expression="ReadString(&quot;Enter the customer's name or ZZZZ to stop: &quot;)"/>
+            </while>
+            <output expression="&quot;Program finished.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalculateCharge" type="Real" variable="charge">
+        <parameters>
+            <parameter name="bathrooms" type="Real" array="False"/>
+            <parameter name="rooms" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="charge" type="Real" array="False" size=""/>
+            <assign variable="charge" expression="40 + (15 * bathrooms) + (10 * rooms)"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="numberInput">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="numberInput" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="numberInput"/>
+        </body>
+    </function>
+    <function name="ReadString" type="String" variable="stringInput">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="stringInput" type="String" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="stringInput"/>
+        </body>
+    </function>
+</flowgorithm>
