@@ -1,6 +1,6 @@
 /*
 Objectives:
-    1. Create a program that calculates the Body Mass Index (BMI) of a person.
+    1. Create a program that calculates the Body Mass Index (BMI) of a person, while the user not enter 0 as weight.
 
 The program should:
     1. Ask the user to enter the weight in pounds and height in inches.
@@ -29,16 +29,23 @@ Main
         num weightKg
         num heightM
         num bmi
+        const num CENTINEL_WEIGHT
     end declare
 
+    set CENTINEL_WEIGHT = 0
     set weight = ReadNumber("Enter the weight in pounds: ")
-    set height = ReadNumber("Enter the height in inches: ")
 
-    set weightKg = weight * 0.453592
-    set heightM = height * 0.0254
-    set bmi = CalculateBMI(weightKg, heightM)
+    while weight is not CENTINEL_WEIGHT then
+        set height = ReadNumber("Enter the height in inches: ")
 
-    output "The BMI value is: " + bmi
+        set weightKg = weight * 0.453592
+        set heightM = height * 0.0254
+        set bmi = CalculateBMI(weightKg, heightM)
+
+        output "The BMI value is: " + bmi
+        
+        set weight = ReadNumber("Enter the weight in pounds: ")
+    end while
     output "Program finished."
 Stop
 
