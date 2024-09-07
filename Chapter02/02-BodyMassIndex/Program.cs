@@ -9,15 +9,23 @@ class Program
         double weightKg = default;
         double heightM = default;
         double bmi = default;
+        const double CENTINEL_WEIGHT = 0.0;
 
         weight = ReadDouble("Enter your weight in pounds: ");
-        height = ReadDouble("Enter your height in inches: ");
 
-        weightKg = weight * 0.453592;
-        heightM = height * 0.0254;
-        bmi = CalculateBMI(weightKg, heightM);
+        while (weight != CENTINEL_WEIGHT)
+        {
+            height = ReadDouble("Enter your height in inches: ");
 
-        Console.WriteLine($"The BMI value is {bmi:F2}");
+            weightKg = weight * 0.453592;
+            heightM = height * 0.0254;
+            bmi = CalculateBMI(weightKg, heightM);
+
+            Console.WriteLine($"The BMI value is {bmi:F2}");
+
+            weight = ReadDouble("Enter your weight in pounds: ");
+        }
+
         Console.WriteLine("Program finished. Press any key to exit.");
         Console.ReadKey();
     }
