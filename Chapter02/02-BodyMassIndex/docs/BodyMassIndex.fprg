@@ -4,21 +4,25 @@
         <attribute name="name" value="BodyMassIndex"/>
         <attribute name="authors" value="Victor Cuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-09-06 11:44:25 p. m."/>
+        <attribute name="saved" value="2024-09-07 12:15:57 a. m."/>
         <attribute name="created" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNjsxMTozMDowMCBwLiBtLjsyOTEx"/>
-        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNjsxMTo0NDoyNSBwLiBtLjsxOzMwMzE="/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNzsxMjoxNTo1NyBhLiBtLjsyOzMwMjI="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <comment text="Create a program that calculates the Body Mass Index (BMI) of a person."/>
-            <declare name="weight, height, weightKg, heightM, bmi" type="Real" array="False" size=""/>
+            <comment text="Create a program that calculates the Body Mass Index (BMI) of a person, while the user not enter 0 as weight."/>
+            <declare name="weight, height, weightKg, heightM, bmi, centinelWeight" type="Real" array="False" size=""/>
+            <assign variable="centinelWeight" expression="0"/>
             <assign variable="weight" expression="ReadNumber(&quot;Enter the weight in pounds: &quot;)"/>
-            <assign variable="height" expression="ReadNumber(&quot;Enter the height in inches: &quot;)"/>
-            <assign variable="weightKg" expression="weight * 0.453592"/>
-            <assign variable="heightM" expression="height * 0.0254"/>
-            <assign variable="bmi" expression="CalculateBMI(weightKg, heightM)"/>
-            <output expression="&quot;The BMI value is: &quot; &amp; bmi" newline="True"/>
+            <while expression="weight &lt;&gt; centinelWeight">
+                <assign variable="height" expression="ReadNumber(&quot;Enter the height in inches: &quot;)"/>
+                <assign variable="weightKg" expression="weight * 0.453592"/>
+                <assign variable="heightM" expression="height * 0.0254"/>
+                <assign variable="bmi" expression="CalculateBMI(weightKg, heightM)"/>
+                <output expression="&quot;The BMI value is: &quot; &amp; bmi" newline="True"/>
+                <assign variable="weight" expression="ReadNumber(&quot;Enter the weight in pounds: &quot;)"/>
+            </while>
             <output expression="&quot;Program finished.&quot;" newline="True"/>
         </body>
     </function>
