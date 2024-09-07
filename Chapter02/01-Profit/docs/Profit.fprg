@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Profit"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-06 10:12:31 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDU7MDE6NDg6MjkgcC4gbS47MzQyNA=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDY7MDk6MDE6MTcgYS4gbS47MTszNTEy"/>
+        <attribute name="edited" value="VmljdG9yIEN1YXlhO0RFTEw7MjAyNC0wOS0wNjsxMDoxMjozMSBwLiBtLjsyOzMwMjM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="a) Calcular la ganancia.&#13;&#10;a) Calculate the profit."/>
+            <declare name="sellingPrice, purchasePrice, profit" type="Real" array="False" size=""/>
+            <assign variable="sellingPrice" expression="ReadNumber(&quot;Enter the selling price: &quot;)"/>
+            <assign variable="purchasePrice" expression="ReadNumber(&quot;Enter the purchase price: &quot;)"/>
+            <assign variable="profit" expression="sellingPrice - purchasePrice"/>
+            <output expression="&quot;The profit is: &quot; &amp; profit" newline="True"/>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
