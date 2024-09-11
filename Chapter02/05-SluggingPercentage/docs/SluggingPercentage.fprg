@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="SluggingPercentage"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-10 06:54:03 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMTA7MDY6NDE6MDAgcC4gbS47MzQwNw=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMTA7MDY6NTQ6MDMgcC4gbS47MTszNTIy"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Calculate the slugging percentage of a softball player."/>
+            <declare name="playerNumber, basesReached, turnsAtBat, sluggingPercentage" type="Real" array="False" size=""/>
+            <assign variable="playerNumber" expression="ReadNumber(&quot;Enter the player's number or 0 to finish: &quot;)"/>
+            <while expression="playerNumber != 0">
+                <assign variable="basesReached" expression="ReadNumber(&quot;Enter the number of bases reached: &quot;)"/>
+                <assign variable="turnsAtBat" expression="ReadNumber(&quot;Enter the number of turns at bat: &quot;)"/>
+                <assign variable="sluggingPercentage" expression="CalculateSluggingPercentage(basesReached, turnsAtBat)"/>
+                <call expression="DisplayResults(playerNumber, basesReached, turnsAtBat, sluggingPercentage)"/>
+                <assign variable="playerNumber" expression="ReadNumber(&quot;Enter the player's number or 0 to finish: &quot;)"/>
+            </while>
+            <call expression="DisplayEndOfWork()"/>
+        </body>
+    </function>
+    <function name="CalculateSluggingPercentage" type="Real" variable="sluggingPercentage">
+        <parameters>
+            <parameter name="basesReached" type="Real" array="False"/>
+            <parameter name="turnsAtBat" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="sluggingPercentage" type="Real" array="False" size=""/>
+            <assign variable="sluggingPercentage" expression="basesReached / turnsAtBat"/>
+        </body>
+    </function>
+    <function name="DisplayEndOfWork" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;End of work&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="DisplayResults" type="None" variable="">
+        <parameters>
+            <parameter name="playerNumber" type="Real" array="False"/>
+            <parameter name="basesReached" type="Real" array="False"/>
+            <parameter name="turnsAtBat" type="Real" array="False"/>
+            <parameter name="sluggingPercentage" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;Player's number: &quot; &amp; playerNumber" newline="True"/>
+            <output expression="&quot;Number of bases reached: &quot; &amp; basesReached" newline="True"/>
+            <output expression="&quot;Number of turns at bat: &quot; &amp; turnsAtBat" newline="True"/>
+            <output expression="&quot;Slugging percentage: &quot; &amp; sluggingPercentage" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
