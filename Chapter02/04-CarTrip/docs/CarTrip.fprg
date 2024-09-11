@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="CarTrip"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-10 12:42:51 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMTA7MTI6MzA6NDEgcC4gbS47MzQwNw=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMTA7MTI6NDI6NTEgcC4gbS47MTszNTE5"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Calcular el costo proyectado de un viaje en autom&#243;vil"/>
+            <declare name="kilometers, costGas, costTrip, costTripIncrease" type="Real" array="False" size=""/>
+            <assign variable="kilometers" expression="ReadNumber(&quot;Enter the number of kilometers or type 0 to exit: &quot;)"/>
+            <while expression="kilometers &lt;&gt; 0">
+                <assign variable="costGas" expression="ReadNumber(&quot;Enter the cost of gas: &quot;)"/>
+                <assign variable="costTrip" expression="(kilometers / 8) * costGas"/>
+                <assign variable="costTripIncrease" expression="costTrip * 1.10"/>
+                <output expression="&quot;The cost of the trip is: &quot; &amp; costTrip" newline="True"/>
+                <output expression="&quot;The cost of the trip with a 10% increase is: &quot; &amp; costTripIncrease" newline="True"/>
+                <assign variable="kilometers" expression="ReadNumber(&quot;Enter the number of kilometers or type 0 to exit: &quot;)"/>
+            </while>
+            <call expression="Finish()"/>
+        </body>
+    </function>
+    <function name="Finish" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;End of the program&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
