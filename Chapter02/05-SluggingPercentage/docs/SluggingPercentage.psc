@@ -20,9 +20,16 @@ Problem:
     elevados de sacrificio. Pida al usuario con un indicador todos los datos
     adicionales necesarios y despliegue todos los datos para cada jugador.
 
+    c) Modifique el programa de softball de modo que también calcule el
+    promedio de producción bruta (GPA, Gross Production Average) para cada
+    jugador. El GPA se calcula multiplicando el porcentaje de veces que cada
+    jugador se embasa por 1.8 y luego sumando el porcentaje de slugging del
+    jugador y dividiendo el resultado entre 4. 
+
 Objectives:
     Calculate the slugging percentage of a softball player.
     Calculate the on-base percentage of a softball player.
+    Calculate the gross production average of a softball player.
 
 Inputs:
     Player's number.
@@ -38,10 +45,12 @@ Outputs:
     Number of turns at bat.
     Slugging percentage.
     On-base percentage.
+    Gross production average.
 
 Formulas:
     Slugging percentage = (Number of bases reached) / (Number of turns at bat)
     On-base percentage = (Number of hits + Number of walks) / (Number of turns at bat + Number of walks + Number of sacrifice flies)
+    Gross production average = ((On-base percentage * 1.8) + Slugging percentage) / 4
 */
 
 Main
@@ -54,6 +63,7 @@ Main
         num sacrificeFlies
         num sluggingPercentage
         num onBasePercentage
+        num grossProductionAverage
     end declare
 
     set playerNumber = ReadNumber("Enter the player's number or 0 to finish: ")
@@ -66,8 +76,9 @@ Main
 
         set sluggingPercentage = CalculateSluggingPercentage(basesReached, turnsAtBat)
         set onBasePercentage = CalculateOnBasePercentage(hits, walks, turnsAtBat, sacrificeFlies)
+        set grossProductionAverage = CalculateGrossProductionAverage(onBasePercentage, sluggingPercentage)
 
-        Call DisplayResults(playerNumber, basesReached, turnsAtBat, sluggingPercentage, onBasePercentage)
+        Call DisplayResults(playerNumber, basesReached, turnsAtBat, hits, walks, sacrificeFlies, sluggingPercentage, onBasePercentage, grossProductionAverage)
 
         set playerNumber = ReadNumber("Enter the player's number or 0 to finish: ")
     end while
@@ -91,7 +102,12 @@ CalculateOnBasePercentage(num hits, num walks, num turnsAtBat, num sacrificeFlie
     set onBasePercentage = (hits + walks) / (turnsAtBat + walks + sacrificeFlies)
 return onBasePercentage
 
-DisplayResults(num playerNumber, num basesReached, num turnsAtBat, num sluggingPercentage, num onBasePercentage)
+CalculateGrossProductionAverage(num onBasePercentage, num sluggingPercentage)
+    declare num grossProductionAverage
+    set grossProductionAverage = ((onBasePercentage * 1.8) + sluggingPercentage) / 4
+return grossProductionAverage
+
+DisplayResults(num playerNumber, num basesReached, num turnsAtBat, num hits, num walks, num sacrificeFlies, num sluggingPercentage, num onBasePercentage, num grossProductionAverage)
     output "Player's number: " + playerNumber
     output "Number of bases reached: " + basesReached
     output "Number of turns at bat: " + turnsAtBat
@@ -100,6 +116,7 @@ DisplayResults(num playerNumber, num basesReached, num turnsAtBat, num sluggingP
     output "Number of sacrifice flies: " + sacrificeFlies
     output "Slugging percentage: " + sluggingPercentage
     output "On-base percentage: " + onBasePercentage
+    output "Gross production average: " + grossProductionAverage
 return
 
 DisplayEndOfWork()
