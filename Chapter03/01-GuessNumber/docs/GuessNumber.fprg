@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="GuessNumber"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-21 09:33:50 PM"/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTA5LTIxOzA5OjEzOjE2IFBNOzI3MDM="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTA5LTIxOzA5OjMzOjUwIFBNOzE7MjgxMQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Adivinar un n&#250;mero entre 1 y 100."/>
+            <declare name="numberToGuess, numberGuessed" type="Integer" array="False" size=""/>
+            <assign variable="numberToGuess" expression="ReadNumber(&quot;Ingresa el n&#250;mero por adivinar: &quot;)"/>
+            <assign variable="numberGuessed" expression="ReadNumber(&quot;Ingresa el n&#250;mero que crees correcto: &quot;)"/>
+            <while expression="numberGuessed != numberToGuess">
+                <if expression="numberToGuess &lt; numberGuessed">
+                    <then>
+                        <output expression="&quot;El n&#250;mero es demasiado alto.&quot;" newline="True"/>
+                    </then>
+                    <else>
+                        <output expression="&quot;El n&#250;mero es demasiado bajo.&quot;" newline="True"/>
+                    </else>
+                </if>
+                <assign variable="numberGuessed" expression="ReadNumber(&quot;Ingresa el n&#250;mero que crees correcto: &quot;)"/>
+            </while>
+            <output expression="&quot;&#161;Felicidades Adivinaste! El n&#250;mero por adivinar era: &quot; &amp; numberToGuess" newline="True"/>
+            <output expression="&quot;Fin del programa.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
