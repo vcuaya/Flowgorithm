@@ -6,11 +6,11 @@ class Program
     {
         int numberToGuess = new Random().Next(1, 101);
         int numberGuessed = default;
-        string message = "Introduce un número entero entre 1 y 100 que creas correcto: ";
+        string message = "Introduce un número entero entre 1 y 100 que creas correcto (introduce 0 para rendirte): ";
 
         numberGuessed = ReadInteger(message);
 
-        while (numberGuessed != numberToGuess)
+        while (numberGuessed != 0 && numberGuessed != numberToGuess)
         {
             if (numberGuessed < numberToGuess)
             {
@@ -23,7 +23,15 @@ class Program
             numberGuessed = ReadInteger(message);
         }
 
-        Console.WriteLine("¡Felicidades has adivinado! El número era {0}.", numberToGuess);
+        if (numberGuessed == 0)
+        {
+            Console.WriteLine($"Te has rendido. El número era {numberToGuess}.");
+        }
+        else
+        {
+            Console.WriteLine($"¡Felicidades has adivinado! El número era {numberToGuess}.");
+        }
+
         Console.WriteLine("Programa terminado. Presiona cualquier tecla para salir.");
         Console.ReadKey();
     }
