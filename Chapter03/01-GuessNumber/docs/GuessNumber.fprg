@@ -4,18 +4,20 @@
         <attribute name="name" value="GuessNumber"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-09-21 09:33:50 PM"/>
+        <attribute name="saved" value="2024-09-21 10:01:10 PM"/>
         <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTA5LTIxOzA5OjEzOjE2IFBNOzI3MDM="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTA5LTIxOzA5OjMzOjUwIFBNOzE7MjgxMQ=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTA5LTIxOzEwOjAxOjEwIFBNOzI7Mjc5NQ=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <comment text="Adivinar un n&#250;mero entre 1 y 100."/>
             <declare name="numberToGuess, numberGuessed" type="Integer" array="False" size=""/>
+            <declare name="message" type="String" array="False" size=""/>
+            <assign variable="message" expression="&quot;Ingresa el n&#250;mero que crees correcto (0 para rendirte): &quot;"/>
             <assign variable="numberToGuess" expression="ReadNumber(&quot;Ingresa el n&#250;mero por adivinar: &quot;)"/>
-            <assign variable="numberGuessed" expression="ReadNumber(&quot;Ingresa el n&#250;mero que crees correcto: &quot;)"/>
-            <while expression="numberGuessed != numberToGuess">
+            <assign variable="numberGuessed" expression="ReadNumber(message)"/>
+            <while expression="numberGuessed != 0 &amp;&amp; numberGuessed != numberToGuess">
                 <if expression="numberToGuess &lt; numberGuessed">
                     <then>
                         <output expression="&quot;El n&#250;mero es demasiado alto.&quot;" newline="True"/>
@@ -24,9 +26,16 @@
                         <output expression="&quot;El n&#250;mero es demasiado bajo.&quot;" newline="True"/>
                     </else>
                 </if>
-                <assign variable="numberGuessed" expression="ReadNumber(&quot;Ingresa el n&#250;mero que crees correcto: &quot;)"/>
+                <assign variable="numberGuessed" expression="ReadNumber(message)"/>
             </while>
-            <output expression="&quot;&#161;Felicidades Adivinaste! El n&#250;mero por adivinar era: &quot; &amp; numberToGuess" newline="True"/>
+            <if expression="numberGuessed == 0">
+                <then>
+                    <output expression="&quot;Te has rendido. El n&#250;mero por adivinar era: &quot; &amp; numberToGuess" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;&#161;Felicidades! El n&#250;mero por adivinar era: &quot; &amp; numberToGuess" newline="True"/>
+                </else>
+            </if>
             <output expression="&quot;Fin del programa.&quot;" newline="True"/>
         </body>
     </function>
