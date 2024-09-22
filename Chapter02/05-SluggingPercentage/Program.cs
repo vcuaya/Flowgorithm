@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        double playerNumber, basesReached, turnAtBats, hits, walks, sacrificeFlies, sluggingPercentage, onBasePercentage;
+        double playerNumber, basesReached, turnAtBats, hits, walks, sacrificeFlies, sluggingPercentage, onBasePercentage, grossProductionAverage;
 
         playerNumber = ReadDouble("Enter the player's number or 0 to finish: ");
 
@@ -18,8 +18,9 @@ class Program
 
             sluggingPercentage = CalculateSluggingPercentage(basesReached, turnAtBats);
             onBasePercentage = CalculateOnBasePercentage(hits, walks, sacrificeFlies, turnAtBats);
+            grossProductionAverage = CalculateGrossProductionAverage(sluggingPercentage, onBasePercentage);
 
-            DisplayResults(playerNumber, basesReached, turnAtBats, sluggingPercentage, onBasePercentage);
+            DisplayResults(playerNumber, basesReached, turnAtBats, hits, walks, sacrificeFlies, sluggingPercentage, onBasePercentage, grossProductionAverage);
 
             playerNumber = ReadDouble("Enter the player's number or 0 to finish: ");
         }
@@ -48,15 +49,19 @@ class Program
         return (hits + walks) / (turnAtBats + walks + sacrificeFlies);
     }
 
-    static void DisplayResults(double playerNumber, double basesReached, double turnAtBats, double sluggingPercentage, double onBasePercentage)
+    static double CalculateGrossProductionAverage(double sluggingPercentage, double onBasePercentage)
+    {
+        return ((onBasePercentage * 1.8) + sluggingPercentage) / 4;
+    }
+
+    static void DisplayResults(double playerNumber, double basesReached, double turnAtBats, double hits, double walks, double sacrificeFlies, double sluggingPercentage, double onBasePercentage, double grossProductionAverage)
     {
         Console.WriteLine();
-        Console.WriteLine("+---------------+---------------+--------------+---------------------+--------------------+");
-        Console.WriteLine("| Player number | Bases reached | Turns at bat | Slugging percentage | On-base percentage |");
-        Console.WriteLine("+---------------+---------------+--------------+---------------------+--------------------+");
-        Console.WriteLine($"|{playerNumber,15}|{basesReached,15}|{turnAtBats,14}|{sluggingPercentage,21:P}|{onBasePercentage,20:P}|");
-        Console.WriteLine("+---------------+---------------+--------------+---------------------+--------------------+");
-        Console.WriteLine();
+        Console.WriteLine("+---------------+---------------+--------------+------+-------+-----------------+---------------------+--------------------+--------------------------+");
+        Console.WriteLine("| Player Number | Bases Reached | Turns at Bat | Hits | Walks | Sacrifice Flies | Slugging Percentage | On-base Percentage | Gross Production Average |");
+        Console.WriteLine("+---------------+---------------+--------------+------+-------+-----------------+---------------------+--------------------+--------------------------+");
+        Console.WriteLine($"| {playerNumber,13} | {basesReached,13} | {turnAtBats,12} | {hits,4} | {walks,5} | {sacrificeFlies,15} | {sluggingPercentage,19:P2} | {onBasePercentage,18:P2} | {grossProductionAverage,24:P2} |");
+        Console.WriteLine("+---------------+---------------+--------------+------+-------+-----------------+---------------------+--------------------+--------------------------+");
     }
 
     static void DisplayEndOfWork()
