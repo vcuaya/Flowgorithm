@@ -13,22 +13,35 @@ Problem:
     despliegue "Fin de trabajo", después de que se introduce el centinela
     para el número de camiseta.
 
+    b) Modifique el programa de porcentaje de slugging para calcular también
+    el porcentaje de veces que se embasa un jugador. Un porcentaje de veces
+    que se embasa se calcula sumando los hits y bases por bolas de un jugador
+    y luego se divide entre la suma de turnos al bate, bases por bolas y
+    elevados de sacrificio. Pida al usuario con un indicador todos los datos
+    adicionales necesarios y despliegue todos los datos para cada jugador.
+
 Objectives:
     Calculate the slugging percentage of a softball player.
+    Calculate the on-base percentage of a softball player.
 
 Inputs:
     Player's number.
     Number of bases reached.
     Number of turns at bat.
+    Number of hits.
+    Number of walks.
+    Number of sacrifice flies.
 
 Outputs:
     Player's number.
     Number of bases reached.
     Number of turns at bat.
     Slugging percentage.
+    On-base percentage.
 
 Formulas:
     Slugging percentage = (Number of bases reached) / (Number of turns at bat)
+    On-base percentage = (Number of hits + Number of walks) / (Number of turns at bat + Number of walks + Number of sacrifice flies)
 */
 
 Main
@@ -36,17 +49,25 @@ Main
         num playerNumber
         num basesReached
         num turnsAtBat
+        num hits
+        num walks
+        num sacrificeFlies
         num sluggingPercentage
+        num onBasePercentage
     end declare
 
     set playerNumber = ReadNumber("Enter the player's number or 0 to finish: ")
     while playerNumber != 0 do
         set basesReached = ReadNumber("Enter the number of bases reached: ")
         set turnsAtBat = ReadNumber("Enter the number of turns at bat: ")
+        set hits = ReadNumber("Enter the number of hits: ")
+        set walks = ReadNumber("Enter the number of walks: ")
+        set sacrificeFlies = ReadNumber("Enter the number of sacrifice flies: ")
 
         set sluggingPercentage = CalculateSluggingPercentage(basesReached, turnsAtBat)
+        set onBasePercentage = CalculateOnBasePercentage(hits, walks, turnsAtBat, sacrificeFlies)
 
-        Call DisplayResults(playerNumber, basesReached, turnsAtBat, sluggingPercentage)
+        Call DisplayResults(playerNumber, basesReached, turnsAtBat, sluggingPercentage, onBasePercentage)
 
         set playerNumber = ReadNumber("Enter the player's number or 0 to finish: ")
     end while
@@ -65,11 +86,20 @@ CalculateSluggingPercentage(num basesReached, num turnsAtBat)
     set sluggingPercentage = basesReached / turnsAtBat
 return sluggingPercentage
 
-DisplayResults(num playerNumber, num basesReached, num turnsAtBat, num sluggingPercentage)
-    output "Player's number: " & playerNumber
-    output "Number of bases reached: " & basesReached
-    output "Number of turns at bat: " & turnsAtBat
-    output "Slugging percentage: " & sluggingPercentage
+CalculateOnBasePercentage(num hits, num walks, num turnsAtBat, num sacrificeFlies)
+    declare num onBasePercentage
+    set onBasePercentage = (hits + walks) / (turnsAtBat + walks + sacrificeFlies)
+return onBasePercentage
+
+DisplayResults(num playerNumber, num basesReached, num turnsAtBat, num sluggingPercentage, num onBasePercentage)
+    output "Player's number: " + playerNumber
+    output "Number of bases reached: " + basesReached
+    output "Number of turns at bat: " + turnsAtBat
+    output "Number of hits: " + hits
+    output "Number of walks: " + walks
+    output "Number of sacrifice flies: " + sacrificeFlies
+    output "Slugging percentage: " + sluggingPercentage
+    output "On-base percentage: " + onBasePercentage
 return
 
 DisplayEndOfWork()
