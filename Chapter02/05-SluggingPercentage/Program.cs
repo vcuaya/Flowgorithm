@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        double playerNumber, basesReached, turnAtBats, sluggingPercentage;
+        double playerNumber, basesReached, turnAtBats, hits, walks, sacrificeFlies, sluggingPercentage, onBasePercentage;
 
         playerNumber = ReadDouble("Enter the player's number or 0 to finish: ");
 
@@ -12,10 +12,14 @@ class Program
         {
             basesReached = ReadDouble("Enter the number of bases reached: ");
             turnAtBats = ReadDouble("Enter the number of turns at bat: ");
+            hits = ReadDouble("Enter the number of hits: ");
+            walks = ReadDouble("Enter the number of walks: ");
+            sacrificeFlies = ReadDouble("Enter the number of sacrifice flies: ");
 
             sluggingPercentage = CalculateSluggingPercentage(basesReached, turnAtBats);
+            onBasePercentage = CalculateOnBasePercentage(hits, walks, sacrificeFlies, turnAtBats);
 
-            DisplayResults(playerNumber, basesReached, turnAtBats, sluggingPercentage);
+            DisplayResults(playerNumber, basesReached, turnAtBats, sluggingPercentage, onBasePercentage);
 
             playerNumber = ReadDouble("Enter the player's number or 0 to finish: ");
         }
@@ -39,12 +43,19 @@ class Program
         return basesReached / turnAtBats;
     }
 
-    static void DisplayResults(double playerNumber, double basesReached, double turnAtBats, double sluggingPercentage)
+    static double CalculateOnBasePercentage(double hits, double walks, double sacrificeFlies, double turnAtBats)
+    {
+        return (hits + walks) / (turnAtBats + walks + sacrificeFlies);
+    }
+
+    static void DisplayResults(double playerNumber, double basesReached, double turnAtBats, double sluggingPercentage, double onBasePercentage)
     {
         Console.WriteLine();
-        Console.WriteLine("| Player number | Bases reached | Turns at bat | Slugging percentage |");
-        Console.WriteLine("| ------------- | ------------- | ------------ | ------------------- |");
-        Console.WriteLine($"|{playerNumber,14} |{basesReached,14} |{turnAtBats,13} |{sluggingPercentage,20:P} |");
+        Console.WriteLine("+---------------+---------------+--------------+---------------------+--------------------+");
+        Console.WriteLine("| Player number | Bases reached | Turns at bat | Slugging percentage | On-base percentage |");
+        Console.WriteLine("+---------------+---------------+--------------+---------------------+--------------------+");
+        Console.WriteLine($"|{playerNumber,15}|{basesReached,15}|{turnAtBats,14}|{sluggingPercentage,21:P}|{onBasePercentage,20:P}|");
+        Console.WriteLine("+---------------+---------------+--------------+---------------------+--------------------+");
         Console.WriteLine();
     }
 
