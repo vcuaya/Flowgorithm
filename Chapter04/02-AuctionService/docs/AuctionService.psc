@@ -15,6 +15,9 @@ Problema:
     datos para cada subasta en la que la oferta mínima sea $0.00 y la duración
     de la subasta sea un día o menos.
 
+    d) Un programa que acepte en forma continua datos de la subasta y despliegue
+    datos para cada subasta en la que la duración esté entre 7 y 30 días inclusive.
+
 Objetivos:
     Desplegar datos de subasta si la oferta mínima requerida es más de 100 dólares.
 
@@ -52,7 +55,7 @@ Main
         set duration = ReadNumber("Enter duration in days: ")
         set minBid = ReadNumber("Enter minimum bid: ")
 
-        if minBid == 0 && duration <= 1 then
+        if 7 <= duration && duration <= 30 then
             ShowAuction(idNumber, description, duration, minBid)
         end if
 
