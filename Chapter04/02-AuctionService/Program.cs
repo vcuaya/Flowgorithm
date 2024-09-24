@@ -8,19 +8,21 @@ class Program
         int duration = default;
         decimal minBid = default;
         string description = default;
+        const int SENTINEL = 0;
 
         idNumber = ReadInteger("Enter the auction ID number: ");
-        description = ReadString("Enter the auction description: ");
-        duration = ReadInteger("Enter the auction duration in days: ");
-        minBid = ReadDecimal("Enter the minimum bid: ");
+        while (idNumber != SENTINEL)
+        {
+            description = ReadString("Enter the auction description: ");
+            duration = ReadInteger("Enter the auction duration in days: ");
+            minBid = ReadDecimal("Enter the minimum bid: ");
 
-        if (100 < minBid)
-        {
-            ShowAuction(idNumber, description, duration, minBid);
-        }
-        else
-        {
-            Console.WriteLine("No auction to display. Minimum bid must be greater than 100.");
+            if (100 < minBid)
+            {
+                ShowAuction(idNumber, description, duration, minBid);
+            }
+
+            idNumber = ReadInteger("Enter the auction ID number: ");
         }
 
         Console.WriteLine("Program finished. Press any key to exit.");
