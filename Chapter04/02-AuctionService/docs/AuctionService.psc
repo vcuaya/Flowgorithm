@@ -7,6 +7,10 @@ Problema:
     requerida. Despliegue datos para una subasta si la oferta mínima requerida
     es más de 100 dólares.
 
+    b) Un programa que acepte en forma continua datos de la subasta hasta que se
+    introduzca un valor centinela y despliegue una lista de todos los datos para
+    subastas en las que la oferta mínima requerida sea mayor que 100 dólares.
+
 Objetivos:
     Desplegar datos de subasta si la oferta mínima requerida es más de 100 dólares.
 
@@ -32,16 +36,24 @@ Main
         string description
         num duration
         num minBid
+        num SENTINEL
     end declare
 
-    set idNumber = ReadNumber("Enter ID number: ")
-    set description = ReadString("Enter description: ")
-    set duration = ReadNumber("Enter duration in days: ")
-    set minBid = ReadNumber("Enter minimum bid: ")
+    set SENTINEL = 0
 
-    if 100 < minBid then
-        ShowAuction(idNumber, description, duration, minBid)
-    end if
+    set idNumber = ReadNumber("Enter ID number: ")
+
+    while idNumber != SENTINEL do
+        set description = ReadString("Enter description: ")
+        set duration = ReadNumber("Enter duration in days: ")
+        set minBid = ReadNumber("Enter minimum bid: ")
+
+        if 100 < minBid then
+            ShowAuction(idNumber, description, duration, minBid)
+        end if
+
+        set idNumber = ReadNumber("Enter ID number: ")
+    end while
 
     output "End of program"
 Stop
