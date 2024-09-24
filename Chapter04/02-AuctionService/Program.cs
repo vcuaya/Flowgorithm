@@ -17,7 +17,7 @@ class Program
             duration = ReadInteger("Enter the auction duration in days: ");
             minBid = ReadDecimal("Enter the minimum bid: ");
 
-            if (100 < minBid)
+            if (minBid == 0 && duration <= 1)
             {
                 ShowAuction(idNumber, description, duration, minBid);
             }
