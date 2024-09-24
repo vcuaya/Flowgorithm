@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="AuctionService"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-24 03:40:30 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMjQ7MDM6Mjk6MzkgcC4gbS47MzQyNw=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMjQ7MDM6NDA6MzAgcC4gbS47MTszNTE5"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="idNumber, duration, minBid" type="Real" array="False" size=""/>
+            <declare name="description" type="String" array="False" size=""/>
+            <assign variable="idNumber" expression="ReadNumber(&quot;Enter ID number: &quot;)"/>
+            <assign variable="description" expression="ReadString(&quot;Enter description: &quot;)"/>
+            <assign variable="duration" expression="ReadNumber(&quot;Enter duration in days&quot;)"/>
+            <assign variable="minBid" expression="ReadNumber(&quot;Enter minimun bid: &quot;)"/>
+            <if expression="100 &lt; minBid">
+                <then>
+                    <call expression="ShowAuction(idNumber, description, duration, minBid)"/>
+                </then>
+                <else/>
+            </if>
+            <output expression="&quot;End of program.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+    <function name="ReadString" type="String" variable="text">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="text" type="String" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="text"/>
+        </body>
+    </function>
+    <function name="ShowAuction" type="None" variable="">
+        <parameters>
+            <parameter name="id" type="Real" array="False"/>
+            <parameter name="description" type="String" array="False"/>
+            <parameter name="duration" type="Real" array="False"/>
+            <parameter name="minBid" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;ID: &quot; &amp; id" newline="True"/>
+            <output expression="&quot;Description: &quot; &amp; description" newline="True"/>
+            <output expression="&quot;Duration: &quot; &amp; duration" newline="True"/>
+            <output expression="&quot;Minimum bid: &quot; &amp; minBid" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
