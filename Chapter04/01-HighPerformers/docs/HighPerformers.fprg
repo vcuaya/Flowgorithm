@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="HighPerformers"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-24 01:22:31 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMjQ7MDE6MTQ6MTIgcC4gbS47MzQxMA=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMjQ7MDE6MjI6MzEgcC4gbS47MTszNTE4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="idVendedor, polizasVendidas" type="Real" array="False" size=""/>
+            <declare name="message" type="String" array="False" size=""/>
+            <assign variable="message" expression="&quot;Introduzca el n&#250;mero ID del vendedor (0 para salir): &quot;"/>
+            <assign variable="idVendedor" expression="ReadNumber(message)"/>
+            <while expression="idVendedor != 0">
+                <assign variable="polizasVendidas" expression="ReadNumber(&quot;Introduzca el n&#250;mero de p&#243;lizas vendidas: &quot;)"/>
+                <if expression="25 &lt; polizasVendidas">
+                    <then>
+                        <call expression="HighPerformer(idVendedor, polizasVendidas)"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="idVendedor" expression="ReadNumber(message)"/>
+            </while>
+            <output expression="&quot;Fin del programa.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="HighPerformer" type="None" variable="">
+        <parameters>
+            <parameter name="idVendedor" type="Real" array="False"/>
+            <parameter name="polizasVendidas" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;ID del vendedor: &quot; &amp; idVendedor" newline="True"/>
+            <output expression="&quot;P&#243;lizas vendidas: &quot; &amp; polizasVendidas" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
