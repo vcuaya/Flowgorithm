@@ -18,8 +18,13 @@ Problema:
     d) Un programa que acepte en forma continua datos de la subasta y despliegue
     datos para cada subasta en la que la duración esté entre 7 y 30 días inclusive.
 
+    e) Un programa que pida al usuario una oferta máxima requerida, y luego acepte
+    en forma continua datos de la subasta y despliegue datos para cada subasta en
+    la que la oferta mínima sea menor o igual que la cantidad introducida por el
+    usuario.
+
 Objetivos:
-    Desplegar datos de subasta si la oferta mínima requerida es más de 100 dólares.
+    Desplegar datos de subasta si se cumple una condición específica.
 
 Entradas:
     ID
@@ -44,10 +49,12 @@ Main
         num duration
         num minBid
         num SENTINEL
+        num maxBid
     end declare
 
     set SENTINEL = 0
 
+    set maxBid = ReadNumber("Enter the max bid: ");
     set idNumber = ReadNumber("Enter ID number: ")
 
     while idNumber != SENTINEL do
@@ -55,7 +62,7 @@ Main
         set duration = ReadNumber("Enter duration in days: ")
         set minBid = ReadNumber("Enter minimum bid: ")
 
-        if 7 <= duration && duration <= 30 then
+        if minBid <= maxBid then
             ShowAuction(idNumber, description, duration, minBid)
         end if
 
