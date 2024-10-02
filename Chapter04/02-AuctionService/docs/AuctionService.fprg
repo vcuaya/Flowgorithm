@@ -4,22 +4,23 @@
         <attribute name="name" value="AuctionService"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-09-24 05:48:32 p. m."/>
+        <attribute name="saved" value="2024-10-02 04:17:31 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMjQ7MDM6Mjk6MzkgcC4gbS47MzQyNw=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMjQ7MDU6NDg6MzIgcC4gbS47NDszNTM0"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDI7MDQ6MTc6MzEgcC4gbS47NTszNTE3"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="idNumber, duration, minBid, sentinel" type="Real" array="False" size=""/>
+            <declare name="idNumber, duration, minBid, sentinel, maxBid" type="Real" array="False" size=""/>
             <declare name="description" type="String" array="False" size=""/>
             <assign variable="sentinel" expression="0"/>
+            <assign variable="maxBid" expression="ReadNumber(&quot;Enter the max bid: &quot;)"/>
             <assign variable="idNumber" expression="ReadNumber(&quot;Enter ID number: &quot;)"/>
             <while expression="idNumber != sentinel">
                 <assign variable="description" expression="ReadString(&quot;Enter description: &quot;)"/>
                 <assign variable="duration" expression="ReadNumber(&quot;Enter duration in days&quot;)"/>
                 <assign variable="minBid" expression="ReadNumber(&quot;Enter minimun bid: &quot;)"/>
-                <if expression="7 &lt;= duration &amp;&amp; duration &lt;= 30">
+                <if expression="minBid &lt;= maxBid">
                     <then>
                         <call expression="ShowAuction(idNumber, description, duration, minBid)"/>
                     </then>
