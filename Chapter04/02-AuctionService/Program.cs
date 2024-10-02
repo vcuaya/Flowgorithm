@@ -7,9 +7,11 @@ class Program
         int idNumber = default;
         int duration = default;
         decimal minBid = default;
+        decimal maxBid = default;
         string description = default;
         const int SENTINEL = 0;
 
+        maxBid = ReadDecimal("Enter the max bid: ");
         idNumber = ReadInteger("Enter the auction ID number: ");
         while (idNumber != SENTINEL)
         {
@@ -17,7 +19,7 @@ class Program
             duration = ReadInteger("Enter the auction duration in days: ");
             minBid = ReadDecimal("Enter the minimum bid: ");
 
-            if (minBid == 0 && duration <= 1)
+            if (minBid <= maxBid)
             {
                 ShowAuction(idNumber, description, duration, minBid);
             }
