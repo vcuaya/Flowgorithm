@@ -12,9 +12,11 @@ class Program
     {
         string areaCode;
         string phoneNumber;
+        string areaCodeSelected;
         int numberOfMessages;
         decimal totalAmount;
 
+        areaCodeSelected = ReadAreaCode("Enter the area code to show invoices (3 digits): ");
         areaCode = ReadAreaCode("Enter the area code (3 digits or 000 to finish): ");
 
         while (areaCode != SENTINEL)
@@ -24,7 +26,7 @@ class Program
 
             totalAmount = CalculateTotal(numberOfMessages);
 
-            if (totalAmount > 20)
+            if (areaCode == areaCodeSelected)
             {
                 DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount);
             }
