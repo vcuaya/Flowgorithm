@@ -4,9 +4,9 @@
         <attribute name="name" value="PhoneCompany"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-07 04:38:13 p. m."/>
+        <attribute name="saved" value="2024-10-07 05:05:35 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MTI6MzE6MDAgcC4gbS47MzQwMQ=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MDQ6Mzg6MTMgcC4gbS47MzszNTIz"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MDU6MDU6MzUgcC4gbS47NDszNTIz"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -19,7 +19,12 @@
                 <assign variable="phoneNumber" expression="ReadString(&quot;Enter the phone number (10 digits): &quot;)"/>
                 <assign variable="numberOfMessages" expression="ReadNumber(&quot;Enter the number of messages: &quot;)"/>
                 <assign variable="totalAmount" expression="CalculateTotal(numberOfMessages)"/>
-                <call expression="DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)"/>
+                <if expression="numberOfMessages &gt; 100">
+                    <then>
+                        <call expression="DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)"/>
+                    </then>
+                    <else/>
+                </if>
                 <assign variable="areaCode" expression="ReadString(&quot;Enter the area code (3 digits or 000 to finish): &quot;)"/>
             </while>
             <output expression="&quot;Program finished.&quot;" newline="True"/>
