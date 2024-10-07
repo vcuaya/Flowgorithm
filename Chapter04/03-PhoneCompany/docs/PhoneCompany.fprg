@@ -4,22 +4,23 @@
         <attribute name="name" value="PhoneCompany"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-07 05:17:35 p. m."/>
+        <attribute name="saved" value="2024-10-07 05:38:43 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MTI6MzE6MDAgcC4gbS47MzQwMQ=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MDU6MTc6MzUgcC4gbS47NTszNTI3"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MDU6Mzg6NDMgcC4gbS47NjszNTMw"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="areaCode, phoneNumber, sentinel" type="String" array="False" size=""/>
+            <declare name="areaCode, phoneNumber, sentinel, areaCodeSelected" type="String" array="False" size=""/>
             <declare name="numberOfMessages, totalAmount" type="Real" array="False" size=""/>
             <assign variable="sentinel" expression="&quot;000&quot;"/>
+            <assign variable="areaCodeSelected" expression="ReadString(&quot;Enter the area code to show invoices (3 digits): &quot;)"/>
             <assign variable="areaCode" expression="ReadString(&quot;Enter the area code (3 digits or 000 to finish): &quot;)"/>
             <while expression="areaCode != sentinel">
                 <assign variable="phoneNumber" expression="ReadString(&quot;Enter the phone number (10 digits): &quot;)"/>
                 <assign variable="numberOfMessages" expression="ReadNumber(&quot;Enter the number of messages: &quot;)"/>
                 <assign variable="totalAmount" expression="CalculateTotal(numberOfMessages)"/>
-                <if expression="totalAmount &gt; 20">
+                <if expression="areaCode == areaCodeSelected">
                     <then>
                         <call expression="DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)"/>
                     </then>
