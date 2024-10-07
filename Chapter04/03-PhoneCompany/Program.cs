@@ -24,7 +24,10 @@ class Program
 
             totalAmount = CalculateTotal(numberOfMessages);
 
-            DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount);
+            if (numberOfMessages > 100)
+            {
+                DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount);
+            }
 
             areaCode = ReadAreaCode("Enter the area code (3 digits or 000 to finish): ");
         }
