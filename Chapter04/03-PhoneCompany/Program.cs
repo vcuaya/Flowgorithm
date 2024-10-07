@@ -24,7 +24,7 @@ class Program
 
             totalAmount = CalculateTotal(numberOfMessages);
 
-            if (numberOfMessages > 100)
+            if (totalAmount > 20)
             {
                 DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount);
             }
