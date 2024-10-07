@@ -4,9 +4,9 @@
         <attribute name="name" value="PhoneCompany"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-07 05:05:35 p. m."/>
+        <attribute name="saved" value="2024-10-07 05:17:35 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MTI6MzE6MDAgcC4gbS47MzQwMQ=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MDU6MDU6MzUgcC4gbS47NDszNTIz"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MDU6MTc6MzUgcC4gbS47NTszNTI3"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -19,7 +19,7 @@
                 <assign variable="phoneNumber" expression="ReadString(&quot;Enter the phone number (10 digits): &quot;)"/>
                 <assign variable="numberOfMessages" expression="ReadNumber(&quot;Enter the number of messages: &quot;)"/>
                 <assign variable="totalAmount" expression="CalculateTotal(numberOfMessages)"/>
-                <if expression="numberOfMessages &gt; 100">
+                <if expression="totalAmount &gt; 20">
                     <then>
                         <call expression="DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)"/>
                     </then>
