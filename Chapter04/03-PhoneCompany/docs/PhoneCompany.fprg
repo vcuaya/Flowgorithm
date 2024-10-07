@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="PhoneCompany"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-07 03:58:31 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MTI6MzE6MDAgcC4gbS47MzQwMQ=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDc7MDM6NTg6MzEgcC4gbS47MjszNTIz"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="areaCode, phoneNumber" type="String" array="False" size=""/>
+            <declare name="numberOfMessages, totalAmount" type="Real" array="False" size=""/>
+            <assign variable="areaCode" expression="ReadString(&quot;Enter the area code (3 digits): &quot;)"/>
+            <assign variable="phoneNumber" expression="ReadString(&quot;Enter the phone number (10 digits): &quot;)"/>
+            <assign variable="numberOfMessages" expression="ReadNumber(&quot;Enter the number of messages: &quot;)"/>
+            <assign variable="totalAmount" expression="CalculateTotal(numberOfMessages)"/>
+            <call expression="DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)"/>
+            <output expression="&quot;Program finished.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalculateTotal" type="Real" variable="total">
+        <parameters>
+            <parameter name="numberOfMessages" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="total, basicRate, rateA, rateB, taxes" type="Real" array="False" size=""/>
+            <assign variable="taxes" expression="0.12"/>
+            <assign variable="basicRate" expression="5"/>
+            <assign variable="rateA" expression="0.05"/>
+            <assign variable="rateB" expression="0.10"/>
+            <assign variable="total" expression="basicRate"/>
+            <if expression="60 &lt; numberOfMessages &amp;&amp; numberOfMessages &lt;= 180">
+                <then>
+                    <assign variable="total" expression="total + (numberOfMessages - 60) * rateA"/>
+                </then>
+                <else>
+                    <if expression="180 &lt; numberOfMessages">
+                        <then>
+                            <assign variable="total" expression="total + (numberOfMessages - 180) * rateB"/>
+                        </then>
+                        <else/>
+                    </if>
+                </else>
+            </if>
+            <assign variable="total" expression="total * (1 + taxes)"/>
+        </body>
+    </function>
+    <function name="DisplayInvoice" type="None" variable="">
+        <parameters>
+            <parameter name="areaCode" type="String" array="False"/>
+            <parameter name="phoneNumber" type="String" array="False"/>
+            <parameter name="numberOfMessages" type="Real" array="False"/>
+            <parameter name="totalAmount" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;Area code: &quot; &amp; areaCode" newline="True"/>
+            <output expression="&quot;Phone number: &quot; &amp; phoneNumber" newline="True"/>
+            <output expression="&quot;Number of messages: &quot; &amp; numberOfMessages" newline="True"/>
+            <output expression="&quot;Total amount: &quot; &amp; totalAmount" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+    <function name="ReadString" type="String" variable="stringInput">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="stringInput" type="String" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="stringInput"/>
+        </body>
+    </function>
+</flowgorithm>
