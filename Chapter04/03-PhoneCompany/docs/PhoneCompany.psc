@@ -20,6 +20,9 @@ Problemática:
     Despliegue todos los datos, incluyendo la factura mensual final tanto
     antes como después de agregar los impuestos.
 
+    b) Un programa que acepte en forma continua datos sobre los mensajes
+    de texto hasta que se introduzca un valor centinela.
+
 Objetivos:
     Leer datos del cliente.
     Mostrar factura final.
@@ -46,19 +49,22 @@ Main
         const num BASIC_RATE = 5
         const num RATE_A = 0.05
         const num RATE_B = 0.10
+        const string SENTINEL = "000"
         string areaCode
         string phoneNumber
         num numberOfMessages
         num totalAmount
     end declare
 
-    input areaCode = ReadString("Enter the area code: ")
-    input phoneNumber = ReadString("Enter the phone number: ")
-    input numberOfMessages = ReadNumber("Enter the number of messages: ")
-
-    set totalAmount = CalculateTotal(numberOfMessages)
-
-    call DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)
+    set areaCode = ReadString("Enter the area code (3 digits or 000 to finish): ")
+    
+    while areaCode != SENTINEL do
+        set phoneNumber = ReadString("Enter the phone number (10 digits): ")
+        set numberOfMessages = ReadNumber("Enter the number of messages: ")
+        set totalAmount = CalculateTotal(numberOfMessages)
+        call DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)
+        set areaCode = ReadString("Enter the area code (3 digits or 000 to finish): ")
+    end while
 
     output "Program finished."
 Stop
