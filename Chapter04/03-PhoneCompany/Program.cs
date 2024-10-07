@@ -6,6 +6,7 @@ class Program
     const decimal BASIC_RATE = 5M;
     const decimal RATE_A = 0.05M;
     const decimal RATE_B = 0.10M;
+    const string SENTINEL = "000";
 
     static void Main(string[] args)
     {
@@ -14,13 +15,19 @@ class Program
         int numberOfMessages;
         decimal totalAmount;
 
-        areaCode = ReadAreaCode("Enter the area code (3 digits): ");
-        phoneNumber = ReadPhoneNumber("Enter the phone number (10 digits): ");
-        numberOfMessages = ReadPositiveInt("Enter the number of messages: ");
+        areaCode = ReadAreaCode("Enter the area code (3 digits or 000 to finish): ");
 
-        totalAmount = CalculateTotal(numberOfMessages);
+        while (areaCode != SENTINEL)
+        {
+            phoneNumber = ReadPhoneNumber("Enter the phone number (10 digits): ");
+            numberOfMessages = ReadPositiveInt("Enter the number of messages: ");
 
-        DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount);
+            totalAmount = CalculateTotal(numberOfMessages);
+
+            DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount);
+
+            areaCode = ReadAreaCode("Enter the area code (3 digits or 000 to finish): ");
+        }
 
         WriteLine("Program finished. Press any key to exit.");
         ReadKey();
