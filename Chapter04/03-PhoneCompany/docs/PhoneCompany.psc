@@ -23,6 +23,10 @@ Problemática:
     b) Un programa que acepte en forma continua datos sobre los mensajes
     de texto hasta que se introduzca un valor centinela.
 
+    c) Un programa que acepte en forma continua datos sobre mensajes de
+    texto hasta que se introduzca un valor centinela y solo despliegue
+    detalles sobre clientes que envíen más de 100 mensajes de texto.
+
 Objetivos:
     Leer datos del cliente.
     Mostrar factura final.
@@ -62,7 +66,9 @@ Main
         set phoneNumber = ReadString("Enter the phone number (10 digits): ")
         set numberOfMessages = ReadNumber("Enter the number of messages: ")
         set totalAmount = CalculateTotal(numberOfMessages)
-        call DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)
+        if numberOfMessages > 100 then
+            call DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)
+        end if
         set areaCode = ReadString("Enter the area code (3 digits or 000 to finish): ")
     end while
 
