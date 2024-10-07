@@ -32,6 +32,12 @@ Problemática:
     detalles sobre clientes cuya factura total con impuestos sea mayor de
     $20.
 
+    e) Un programa que pida al usuario un código de área de tres dígitos
+    de la cual seleccionar facturas. Luego el programa acepta en forma
+    continua datos de mensajes de texto hasta que se introduzca un valor
+    centinela y solo despliegue datos para mensajes enviados desde el
+    código de área especificado por el usuario.
+
 Objetivos:
     Leer datos del cliente.
     Mostrar factura del cliente.
@@ -61,17 +67,19 @@ Main
         const string SENTINEL = "000"
         string areaCode
         string phoneNumber
+        string areaCodeSelected
         num numberOfMessages
         num totalAmount
     end declare
 
+    set areaCodeSelected = ReadString"Enter the area code to show invoices (3 digits): ")
     set areaCode = ReadString("Enter the area code (3 digits or 000 to finish): ")
     
     while areaCode != SENTINEL do
         set phoneNumber = ReadString("Enter the phone number (10 digits): ")
         set numberOfMessages = ReadNumber("Enter the number of messages: ")
         set totalAmount = CalculateTotal(numberOfMessages)
-        if totalAmount > 20 then
+        if areaCode == areaCodeSelected then
             call DisplayInvoice(areaCode, phoneNumber, numberOfMessages, totalAmount)
         end if
         set areaCode = ReadString("Enter the area code (3 digits or 000 to finish): ")
