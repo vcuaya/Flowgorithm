@@ -28,6 +28,10 @@ Problema:
     los datos para cualquier tenedor de póliza cuya prima venza a más tardar
     el 15 de marzo de cualquier año.
 
+    f) Un programa que acepte datos de los tenedores de pólizas y despliegue
+    los datos para cualquier tenedor de póliza cuya prima venza hasta el 1 de
+    enero de 2014.
+
 Objetivos:
     Crear un programa que acepte datos de pólizas de seguros.
 
@@ -90,7 +94,7 @@ Main
             end if
         end if
 
-        if month <= 3 and day <= 15 then
+        if (year <= 2013) or (year == 2014 and month <= 1 and day <= 1) then
             call DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents)
         end if
     
