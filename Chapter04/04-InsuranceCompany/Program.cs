@@ -55,7 +55,7 @@ class Program
                 }
             }
 
-            if (year <= 2013 || (year == 2014 && month <= 1 && day <= 1))
+            if (year <= 2013 && month == 4 && day == 27)
             {
                 DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents);
             }
