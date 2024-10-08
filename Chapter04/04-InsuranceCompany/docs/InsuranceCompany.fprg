@@ -4,9 +4,9 @@
         <attribute name="name" value="InsuranceCompany"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-08 04:04:36 p. m."/>
+        <attribute name="saved" value="2024-10-08 04:22:35 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MTA6NTk6MDMgYS4gbS47MzM5OA=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MDQ6MDQ6MzYgcC4gbS47NzszNTI2"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MDQ6MjI6MzUgcC4gbS47ODszNTI2"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -70,7 +70,7 @@
                         </if>
                     </else>
                 </if>
-                <if expression="year == 2013 and month == 4 and day == 27">
+                <if expression="(policyNumber &gt;= 1000 and policyNumber &lt;= 4000) and (month == 4 or month == 5) and accidents &lt; 3">
                     <then>
                         <call expression="DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents)"/>
                     </then>
