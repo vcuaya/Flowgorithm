@@ -13,6 +13,10 @@ Problema:
     o 1 y 29 para febrero), establezca el día, mes y año en 0. Despliegue los
     datos de la póliza después que se hayan hecho cualesquiera revisiones.
 
+    b) Un programa que acepte en forma continua los datos de los tenedores de
+    pólizas hasta que se introduzca un valor centinela y despliegue los datos
+    para cualquier tenedor de póliza mayor de 35 años de edad.
+
 Objetivos:
     Crear un programa que acepte datos de pólizas de seguros.
 
@@ -41,38 +45,46 @@ Main
         num month
         num year
         num accidents
+        const num SENTINEL = 0
     end declare
 
-    set policyNumber = ReadNumber("Enter the policy number: ")
-    set lastName = ReadString("Enter the last name: ")
-    set firstName = ReadString("Enter the first name: ")
-    set age = ReadNumber("Enter the age: ")
-    set day = ReadNumber("Enter the day: ")
-    set month = ReadNumber("Enter the month: ")
-    set year = ReadNumber("Enter the year: ")
-    set accidents = ReadNumber("Enter the number of accidents: ")
+    set policyNumber = ReadNumber("Enter the policy number or type " + SENTINEL + " to finish: ")
+    
+    while policyNumber != SENTINEL do
+        set lastName = ReadString("Enter the last name: ")
+        set firstName = ReadString("Enter the first name: ")
+        set age = ReadNumber("Enter the age: ")
+        set day = ReadNumber("Enter the day: ")
+        set month = ReadNumber("Enter the month: ")
+        set year = ReadNumber("Enter the year: ")
+        set accidents = ReadNumber("Enter the number of accidents: ")
+        
+        if policyNumber < 1000 or policyNumber > 9999 then
+            set policyNumber = 0
+        end if
+        if month < 1 or month > 12 then
+            set month = 0
+        end if
+        if month == 1 or month == 3 or month == 5 or month == 7 or month == 8 or month == 10 or month == 12 then
+            if day < 1 or day > 31 then
+                set day = 0
+            end if
+        else if month == 4 or month == 6 or month == 9 or month == 11 then
+            if day < 1 or day > 30 then
+                set day = 0
+            end if
+        else if month == 2 then
+            if day < 1 or day > 29 then
+                set day = 0
+            end if
+        end if
 
-    if policyNumber < 1000 or policyNumber > 9999 then
-        set policyNumber = 0
-    end if
-    if month < 1 or month > 12 then
-        set month = 0
-    end if
-    if month == 1 or month == 3 or month == 5 or month == 7 or month == 8 or month == 10 or month == 12 then
-        if day < 1 or day > 31 then
-            set day = 0
+        if age > 35 then
+            call DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents)
         end if
-    else if month == 4 or month == 6 or month == 9 or month == 11 then
-        if day < 1 or day > 30 then
-            set day = 0
-        end if
-    else if month == 2 then
-        if day < 1 or day > 29 then
-            set day = 0
-        end if
-    end if
-
-    call DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents)
+    
+        set policyNumber = ReadNumber("Enter the policy number or type " + SENTINEL + " to finish: ")
+    end while
 
     output "Program finished."
 Stop
