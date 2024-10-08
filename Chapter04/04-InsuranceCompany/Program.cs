@@ -55,7 +55,7 @@ class Program
                 }
             }
 
-            if (!(age > 30))
+            if (month <= 3 && day <= 15)
             {
                 DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents);
             }
