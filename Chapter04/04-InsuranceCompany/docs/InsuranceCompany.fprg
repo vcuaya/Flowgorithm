@@ -4,71 +4,80 @@
         <attribute name="name" value="InsuranceCompany"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-08 11:25:54 a. m."/>
+        <attribute name="saved" value="2024-10-08 12:48:30 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MTA6NTk6MDMgYS4gbS47MzM5OA=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MTE6MjU6NTQgYS4gbS47MTszNTA2"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MTI6NDg6MzAgcC4gbS47MjszNTIy"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="policyNumber, age, day, month, year, accidents" type="Real" array="False" size=""/>
+            <declare name="policyNumber, age, day, month, year, accidents, sentinel" type="Real" array="False" size=""/>
             <declare name="firstName, lastName" type="String" array="False" size=""/>
-            <assign variable="policyNumber" expression="ReadNumber(&quot;Enter the policy number: &quot;)"/>
-            <assign variable="lastName" expression="ReadString(&quot;Enter the last name: &quot;)"/>
-            <assign variable="firstName" expression="ReadString(&quot;Enter the first name: &quot;)"/>
-            <assign variable="age" expression="ReadNumber(&quot;Enter the age: &quot;)"/>
-            <assign variable="day" expression="ReadNumber(&quot;Enter the day: &quot;)"/>
-            <assign variable="month" expression="ReadNumber(&quot;Enter the month: &quot;)"/>
-            <assign variable="year" expression="ReadNumber(&quot;Enter the year: &quot;)"/>
-            <assign variable="accidents" expression="ReadNumber(&quot;Enter the number of accidents: &quot;)"/>
-            <if expression="policyNumber &lt; 1000 || policyNumber &gt; 9999">
-                <then>
-                    <assign variable="policyNumber" expression="0"/>
-                </then>
-                <else/>
-            </if>
-            <if expression="month &lt; 1 or month &gt; 12">
-                <then>
-                    <assign variable="month" expression="0"/>
-                </then>
-                <else/>
-            </if>
-            <if expression="month == 1 or month == 3 or month == 5 or month == 7 or month == 8 or month == 10 or month == 12">
-                <then>
-                    <if expression="day &lt; 1 or day &gt; 31">
-                        <then>
-                            <assign variable="day" expression="0"/>
-                        </then>
-                        <else/>
-                    </if>
-                </then>
-                <else>
-                    <if expression="month == 4 or month == 6 or month == 9 or month == 11">
-                        <then>
-                            <if expression="day &lt; 1 or day &gt; 30">
-                                <then>
-                                    <assign variable="day" expression="0"/>
-                                </then>
-                                <else/>
-                            </if>
-                        </then>
-                        <else>
-                            <if expression="month == 2">
-                                <then>
-                                    <if expression="day &lt; 1 or day &gt; 29">
-                                        <then>
-                                            <assign variable="day" expression="0"/>
-                                        </then>
-                                        <else/>
-                                    </if>
-                                </then>
-                                <else/>
-                            </if>
-                        </else>
-                    </if>
-                </else>
-            </if>
-            <call expression="DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents)"/>
+            <assign variable="sentinel" expression="0"/>
+            <assign variable="policyNumber" expression="ReadNumber(&quot;Enter the policy number or type &quot; &amp; sentinel &amp; &quot; to finish: &quot;)"/>
+            <while expression="policyNumber != sentinel">
+                <assign variable="lastName" expression="ReadString(&quot;Enter the last name: &quot;)"/>
+                <assign variable="firstName" expression="ReadString(&quot;Enter the first name: &quot;)"/>
+                <assign variable="age" expression="ReadNumber(&quot;Enter the age: &quot;)"/>
+                <assign variable="day" expression="ReadNumber(&quot;Enter the day: &quot;)"/>
+                <assign variable="month" expression="ReadNumber(&quot;Enter the month: &quot;)"/>
+                <assign variable="year" expression="ReadNumber(&quot;Enter the year: &quot;)"/>
+                <assign variable="accidents" expression="ReadNumber(&quot;Enter the number of accidents: &quot;)"/>
+                <if expression="policyNumber &lt; 1000 || policyNumber &gt; 9999">
+                    <then>
+                        <assign variable="policyNumber" expression="0"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="month &lt; 1 or month &gt; 12">
+                    <then>
+                        <assign variable="month" expression="0"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="month == 1 or month == 3 or month == 5 or month == 7 or month == 8 or month == 10 or month == 12">
+                    <then>
+                        <if expression="day &lt; 1 or day &gt; 31">
+                            <then>
+                                <assign variable="day" expression="0"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </then>
+                    <else>
+                        <if expression="month == 4 or month == 6 or month == 9 or month == 11">
+                            <then>
+                                <if expression="day &lt; 1 or day &gt; 30">
+                                    <then>
+                                        <assign variable="day" expression="0"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </then>
+                            <else>
+                                <if expression="month == 2">
+                                    <then>
+                                        <if expression="day &lt; 1 or day &gt; 29">
+                                            <then>
+                                                <assign variable="day" expression="0"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+                <if expression="age &gt; 35">
+                    <then>
+                        <call expression="DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents)"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="policyNumber" expression="ReadNumber(&quot;Enter the policy number or type &quot; &amp; sentinel &amp; &quot; to finish: &quot;)"/>
+            </while>
             <output expression="&quot;Program finished.&quot;" newline="True"/>
         </body>
     </function>
