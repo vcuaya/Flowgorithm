@@ -55,7 +55,7 @@ class Program
                 }
             }
 
-            if (age > 35)
+            if (age < 21)
             {
                 DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents);
             }
