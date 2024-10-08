@@ -36,6 +36,11 @@ Problema:
     los datos para cualquier tenedor de póliza cuya prima se venza el 27 de
     abril de 2013.
 
+    h) Un programa que acepte datos de los tenedores de pólizas y despliegue
+    los datos para cualquiera que tenga un número de póliza entre 1,000 y
+    4,000 inclusive, cuya póliza se venza en abril o mayo de cualquier año, y
+    que haya tenido menos de tres accidentes.
+
 Objetivos:
     Crear un programa que acepte datos de pólizas de seguros.
 
@@ -98,7 +103,7 @@ Main
             end if
         end if
 
-        if (year == 2013 and month == 4 and day == 27) then
+        if (policyNumber >= 1,000 and policyNumber <= 4,000) and (month == 4 or month == 5) and accidents < 3 then
             call DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents)
         end if
     
