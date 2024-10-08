@@ -24,6 +24,10 @@ Problema:
     d) Un programa que acepte datos de los tenedores de pólizas y despliegue
     los datos para cualquier tenedor de póliza no mayor de 30 años de edad.
 
+    e) Un programa que acepte datos de los tenedores de pólizas y despliegue
+    los datos para cualquier tenedor de póliza cuya prima venza a más tardar
+    el 15 de marzo de cualquier año.
+
 Objetivos:
     Crear un programa que acepte datos de pólizas de seguros.
 
@@ -86,7 +90,7 @@ Main
             end if
         end if
 
-        if not age > 30 then
+        if month <= 3 and day <= 15 then
             call DisplayPolicy(policyNumber, lastName, firstName, age, day, month, year, accidents)
         end if
     
