@@ -4,9 +4,9 @@
         <attribute name="name" value="DogDaycare"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-08 06:29:53 p. m."/>
+        <attribute name="saved" value="2024-10-09 11:02:14 a. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MDQ6NDU6MTAgcC4gbS47MzQwOQ=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MDY6Mjk6NTMgcC4gbS47MzszNTMw"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDk7MTE6MDI6MTQgYS4gbS47NDszNTAx"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -20,7 +20,12 @@
                 <assign variable="dogAge" expression="ReadNumber(&quot;Enter the age of the dog: &quot;)"/>
                 <assign variable="dogWeight" expression="ReadNumber(&quot;Enter the weight of the dog: &quot;)"/>
                 <assign variable="weeklyFee" expression="CalculateWeeklyFee(dogWeight)"/>
-                <call expression="DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee)"/>
+                <if expression="weeklyFee &gt; 100">
+                    <then>
+                        <call expression="DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee)"/>
+                    </then>
+                    <else/>
+                </if>
                 <assign variable="idNumber" expression="ReadNumber(&quot;Enter the ID number of the owner or enter &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
             </while>
             <output expression="&quot;Program finished&quot;" newline="True"/>
