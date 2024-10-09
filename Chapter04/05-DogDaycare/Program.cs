@@ -21,8 +21,11 @@ class Program
             dogWeight = ReadPositiveDouble("Enter the weight of the dog: ");
             weeklyFee = CalculateWeeklyFee(dogWeight);
 
-            DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee);
-            
+            if (weeklyFee > 100)
+            {
+                DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee);
+            }
+
             idNumber = ReadPositiveInteger($"Enter the ID number of the owner or enter {SENTINEL} to finish: ");
         }
 
