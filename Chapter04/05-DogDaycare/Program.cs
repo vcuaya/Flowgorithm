@@ -10,13 +10,21 @@ class Program
         double dogWeight = default;
         decimal weeklyFee = default;
 
-        idNumber = ReadPositiveInteger("Enter the ID number of the owner: ");
-        dogName = ReadString("Enter the name of the dog: ");
-        dogAge = ReadPositiveInteger("Enter the age of the dog: ");
-        dogWeight = ReadPositiveDouble("Enter the weight of the dog: ");
-        weeklyFee = CalculateWeeklyFee(dogWeight);
+        const int SENTINEL = 999;
 
-        DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee);
+        idNumber = ReadPositiveInteger($"Enter the ID number of the owner or enter {SENTINEL} to finish: ");
+
+        while (idNumber != SENTINEL)
+        {
+            dogName = ReadString("Enter the name of the dog: ");
+            dogAge = ReadPositiveInteger("Enter the age of the dog: ");
+            dogWeight = ReadPositiveDouble("Enter the weight of the dog: ");
+            weeklyFee = CalculateWeeklyFee(dogWeight);
+
+            DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee);
+            
+            idNumber = ReadPositiveInteger($"Enter the ID number of the owner or enter {SENTINEL} to finish: ");
+        }
 
         WriteLine("Program finished. Press any key to exit.");
         ReadKey();
