@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="DogDaycare"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-08 05:54:58 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MDQ6NDU6MTAgcC4gbS47MzQwOQ=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MDU6NTQ6NTggcC4gbS47MTszNTMw"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="idNumber, dogAge, dogWeight, weeklyFee" type="Real" array="False" size=""/>
+            <declare name="dogName" type="String" array="False" size=""/>
+            <assign variable="idNumber" expression="ReadNumber(&quot;Enter the ID number of the owner: &quot;)"/>
+            <assign variable="dogName" expression="ReadString(&quot;Enter the name of the dog: &quot;)"/>
+            <assign variable="dogAge" expression="ReadNumber(&quot;Enter the age of the dog: &quot;)"/>
+            <assign variable="dogWeight" expression="ReadNumber(&quot;Enter the weight of the dog: &quot;)"/>
+            <assign variable="weeklyFee" expression="CalculateWeeklyFee(dogWeight)"/>
+            <call expression="DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee)"/>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalculateWeeklyFee" type="Real" variable="weeklyFee">
+        <parameters>
+            <parameter name="dogWeight" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="weeklyFee" type="Real" array="False" size=""/>
+            <if expression="dogWeight &lt; 7">
+                <then>
+                    <assign variable="weeklyFee" expression="55"/>
+                </then>
+                <else>
+                    <if expression="dogWeight &gt;= 7 and dogWeight &lt;= 14">
+                        <then>
+                            <assign variable="weeklyFee" expression="75"/>
+                        </then>
+                        <else>
+                            <if expression="dogWeight &gt; 14 and dogWeight &lt;= 37">
+                                <then>
+                                    <assign variable="weeklyFee" expression="105"/>
+                                </then>
+                                <else>
+                                    <assign variable="weeklyFee" expression="125"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="DisplayInvoice" type="None" variable="">
+        <parameters>
+            <parameter name="idNumber" type="Real" array="False"/>
+            <parameter name="dogName" type="String" array="False"/>
+            <parameter name="dogAge" type="Real" array="False"/>
+            <parameter name="dogWeight" type="Real" array="False"/>
+            <parameter name="weeklyFee" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;Owner ID: &quot; &amp; idNumber" newline="True"/>
+            <output expression="&quot;Dog name: &quot; &amp; dogName" newline="True"/>
+            <output expression="&quot;Dog age: &quot; &amp; dogAge" newline="True"/>
+            <output expression="&quot;Dog weight: &quot; &amp; dogWeight" newline="True"/>
+            <output expression="&quot;Weekly fee: &quot; &amp; weeklyFee" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+    <function name="ReadString" type="String" variable="text">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="text" type="String" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="text"/>
+        </body>
+    </function>
+</flowgorithm>
