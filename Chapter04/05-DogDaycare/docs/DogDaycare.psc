@@ -13,6 +13,10 @@ Problema:
     que se introduzca un valor centineal y despliegue datos de facturación
     para cada perro.
 
+    c) Un programa que acepte en forma continua los datos de los perros hasta
+    que se introduzca un valor centinela y despliegue datos de facturación
+    para los propietarios de perros que deban más de $100.
+
 Objetivos:
     Mostrar los datos de entrada al igual que la tarifa semanal
 
@@ -48,7 +52,9 @@ Main
         set dogWeight = ReadNumber("Enter the weight of the dog: ")
         set weeklyFee = CalculateWeeklyFee(dogWeight)
         
-        call DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee)
+        if weeklyFee > 100 then
+            call DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee)
+        end if
         
         set idNumber = ReadNumber("Enter the ID number of the owner or enter " + SENTINEL + " to finish: ")
     end while
