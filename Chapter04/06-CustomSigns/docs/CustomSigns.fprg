@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="CustomSigns"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-09 12:28:36 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDk7MTE6MzI6MDggYS4gbS47MzM5Ng=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDk7MTI6Mjg6MzYgcC4gbS47MTszNTI2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="idNumber, numCharacters, finalPrice" type="Real" array="False" size=""/>
+            <declare name="clientName, woodType, color" type="String" array="False" size=""/>
+            <assign variable="idNumber" expression="ReadNumber(&quot;Enter the ID number: &quot;)"/>
+            <assign variable="clientName" expression="ReadString(&quot;Enter the client name: &quot;)"/>
+            <assign variable="woodType" expression="ReadString(&quot;Enter the wood type (pine or oak): &quot;)"/>
+            <assign variable="numCharacters" expression="ReadNumber(&quot;Enter the number of characters: &quot;)"/>
+            <assign variable="color" expression="ReadString(&quot;Enter the color (white or black or gold): &quot;)"/>
+            <assign variable="finalPrice" expression="CalculateFinalPrice(woodType, numCharacters, color)"/>
+            <call expression="DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice)"/>
+            <output expression="&quot;Program finished.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalculateFinalPrice" type="Real" variable="finalPrice">
+        <parameters>
+            <parameter name="woodType" type="String" array="False"/>
+            <parameter name="numCharacters" type="Real" array="False"/>
+            <parameter name="color" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="finalPrice" type="Real" array="False" size=""/>
+            <if expression="woodType == &quot;pine&quot;">
+                <then>
+                    <assign variable="finalPrice" expression="30"/>
+                </then>
+                <else>
+                    <assign variable="finalPrice" expression="30 + 15"/>
+                </else>
+            </if>
+            <if expression="color == &quot;gold&quot;">
+                <then>
+                    <assign variable="finalPrice" expression="finalPrice + 12"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="numCharacters &gt; 6">
+                <then>
+                    <assign variable="finalPrice" expression="finalPrice + (numCharacters - 6) * 3"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+    <function name="DisplayResults" type="None" variable="">
+        <parameters>
+            <parameter name="idNumber" type="Real" array="False"/>
+            <parameter name="clientName" type="String" array="False"/>
+            <parameter name="woodType" type="String" array="False"/>
+            <parameter name="numCharacters" type="Real" array="False"/>
+            <parameter name="color" type="String" array="False"/>
+            <parameter name="finalPrice" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;ID number: &quot; &amp; idNumber" newline="True"/>
+            <output expression="&quot;Client name: &quot; &amp; clientName" newline="True"/>
+            <output expression="&quot;Wood type: &quot; &amp; woodType" newline="True"/>
+            <output expression="&quot;Number of characters: &quot; &amp; numCharacters" newline="True"/>
+            <output expression="&quot;Color: &quot; &amp; color" newline="True"/>
+            <output expression="&quot;Final price: &quot; &amp; finalPrice" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+    <function name="ReadString" type="String" variable="textInput">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="textInput" type="String" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="textInput"/>
+        </body>
+    </function>
+</flowgorithm>
