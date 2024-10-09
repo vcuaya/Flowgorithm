@@ -4,22 +4,31 @@
         <attribute name="name" value="CustomSigns"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-09 12:28:36 p. m."/>
+        <attribute name="saved" value="2024-10-09 05:49:01 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDk7MTE6MzI6MDggYS4gbS47MzM5Ng=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDk7MTI6Mjg6MzYgcC4gbS47MTszNTI2"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDk7MDU6NDk6MDEgcC4gbS47MjszNTI0"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="idNumber, numCharacters, finalPrice" type="Real" array="False" size=""/>
+            <declare name="idNumber, numCharacters, finalPrice, sentinel" type="Real" array="False" size=""/>
             <declare name="clientName, woodType, color" type="String" array="False" size=""/>
-            <assign variable="idNumber" expression="ReadNumber(&quot;Enter the ID number: &quot;)"/>
-            <assign variable="clientName" expression="ReadString(&quot;Enter the client name: &quot;)"/>
-            <assign variable="woodType" expression="ReadString(&quot;Enter the wood type (pine or oak): &quot;)"/>
-            <assign variable="numCharacters" expression="ReadNumber(&quot;Enter the number of characters: &quot;)"/>
-            <assign variable="color" expression="ReadString(&quot;Enter the color (white or black or gold): &quot;)"/>
-            <assign variable="finalPrice" expression="CalculateFinalPrice(woodType, numCharacters, color)"/>
-            <call expression="DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice)"/>
+            <assign variable="sentinel" expression="999"/>
+            <assign variable="idNumber" expression="ReadNumber(&quot;Enter the ID number or &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+            <while expression="idNumber != sentinel">
+                <assign variable="clientName" expression="ReadString(&quot;Enter the client name: &quot;)"/>
+                <assign variable="woodType" expression="ReadString(&quot;Enter the wood type (pine or oak): &quot;)"/>
+                <assign variable="numCharacters" expression="ReadNumber(&quot;Enter the number of characters: &quot;)"/>
+                <assign variable="color" expression="ReadString(&quot;Enter the color (white or black or gold): &quot;)"/>
+                <assign variable="finalPrice" expression="CalculateFinalPrice(woodType, numCharacters, color)"/>
+                <if expression="woodType == &quot;oak&quot; and color == &quot;white&quot;  and numCharacters == 5">
+                    <then>
+                        <call expression="DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice)"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="idNumber" expression="ReadNumber(&quot;Enter the ID number or &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+            </while>
             <output expression="&quot;Program finished.&quot;" newline="True"/>
         </body>
     </function>
