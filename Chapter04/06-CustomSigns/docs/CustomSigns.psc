@@ -18,6 +18,10 @@ Problema:
     tipo de madera, número de caracteres y color de los caracteres. Despliegue
     todos los datos introducidos y el precio final para el letrero.
 
+    b) Un programa que acepte en forma continua datos de pedidos de letreros
+    y despliegue toda la información relevante para los que son de roble con
+    cinco letras blancas.
+
 Objetivos:
     Mostrar los datos introducidos.
     Mostrar el precio final.
@@ -53,17 +57,25 @@ Main
         num numCharacters
         string color
         num finalPrice
+        const num SENTINEL = 999
     end declare
 
-    set idNumber = ReadNumber("Enter the ID number: ")
-    set clientName = ReadString("Enter the client name: ")
-    set woodType = ReadString("Enter the wood type (pine or oak): ")
-    set numCharacters = ReadNumber("Enter the number of characters: ")
-    set color = ReadString("Enter the color (white or black or gold): ")
+    set idNumber = ReadNumber("Enter the ID number or " + SENTINEL + " to finish: ")
 
-    set finalPrice = CalculateFinalPrice(woodType, numCharacters, color)
+    while idNumber != SENTINEL do
+        set clientName = ReadString("Enter the client name: ")
+        set woodType = ReadString("Enter the wood type (pine or oak): ")
+        set numCharacters = ReadNumber("Enter the number of characters: ")
+        set color = ReadString("Enter the color (white or black or gold): ")
 
-    call DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice)
+        set finalPrice = CalculateFinalPrice(woodType, numCharacters, color)
+
+        if woodType == "o" and color == "w"  and numCharacters == 5 then
+            call DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice)
+        end if
+
+        set idNumber = ReadNumber("Enter the ID number or " + SENTINEL + " to finish: ")
+    end while
 
     output "Program finished."
 Stop
