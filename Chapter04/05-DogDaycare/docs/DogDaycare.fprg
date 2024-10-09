@@ -4,21 +4,25 @@
         <attribute name="name" value="DogDaycare"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-08 05:54:58 p. m."/>
+        <attribute name="saved" value="2024-10-08 06:29:53 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MDQ6NDU6MTAgcC4gbS47MzQwOQ=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MDU6NTQ6NTggcC4gbS47MTszNTMw"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDg7MDY6Mjk6NTMgcC4gbS47MzszNTMw"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="idNumber, dogAge, dogWeight, weeklyFee" type="Real" array="False" size=""/>
+            <declare name="idNumber, dogAge, dogWeight, weeklyFee, sentinel" type="Real" array="False" size=""/>
             <declare name="dogName" type="String" array="False" size=""/>
-            <assign variable="idNumber" expression="ReadNumber(&quot;Enter the ID number of the owner: &quot;)"/>
-            <assign variable="dogName" expression="ReadString(&quot;Enter the name of the dog: &quot;)"/>
-            <assign variable="dogAge" expression="ReadNumber(&quot;Enter the age of the dog: &quot;)"/>
-            <assign variable="dogWeight" expression="ReadNumber(&quot;Enter the weight of the dog: &quot;)"/>
-            <assign variable="weeklyFee" expression="CalculateWeeklyFee(dogWeight)"/>
-            <call expression="DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee)"/>
+            <assign variable="sentinel" expression="999"/>
+            <assign variable="idNumber" expression="ReadNumber(&quot;Enter the ID number of the owner or enter &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+            <while expression="idNumber != sentinel">
+                <assign variable="dogName" expression="ReadString(&quot;Enter the name of the dog: &quot;)"/>
+                <assign variable="dogAge" expression="ReadNumber(&quot;Enter the age of the dog: &quot;)"/>
+                <assign variable="dogWeight" expression="ReadNumber(&quot;Enter the weight of the dog: &quot;)"/>
+                <assign variable="weeklyFee" expression="CalculateWeeklyFee(dogWeight)"/>
+                <call expression="DisplayInvoice(idNumber, dogName, dogAge, dogWeight, weeklyFee)"/>
+                <assign variable="idNumber" expression="ReadNumber(&quot;Enter the ID number of the owner or enter &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+            </while>
             <output expression="&quot;Program finished&quot;" newline="True"/>
         </body>
     </function>
