@@ -22,6 +22,10 @@ Problema:
     y despliegue toda la información relevante para los que son de roble con
     cinco letras blancas.
 
+    c) Un programa que acepte en forma continua datos de pedidos de letreros
+    y despliegue toda la información relevante para los que son de pino con 
+    letras doradas y con más de 10 caracteres.
+
 Objetivos:
     Mostrar los datos introducidos.
     Mostrar el precio final.
@@ -70,7 +74,7 @@ Main
 
         set finalPrice = CalculateFinalPrice(woodType, numCharacters, color)
 
-        if woodType == "o" and color == "w"  and numCharacters == 5 then
+        if woodType == "pine" and color == "gold"  and numCharacters >= 10 then
             call DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice)
         end if
 
