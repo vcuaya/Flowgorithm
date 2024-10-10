@@ -28,7 +28,7 @@ class Program
             color = ReadString("Enter the color [white(w) or black(b) or gold(g)]: ", ["w", "b", "g"]);
             finalPrice = CalculateFinalPrice(woodType, numCharacters, color);
 
-            if (woodType.ToLower() == "o" && color.ToLower() == "w" && numCharacters == 5)
+            if (woodType.ToLower() == "p" && color.ToLower() == "g" && numCharacters >= 10)
             {
                 DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice);
             }
