@@ -4,9 +4,9 @@
         <attribute name="name" value="CustomSigns"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-09 05:49:01 p. m."/>
+        <attribute name="saved" value="2024-10-09 06:41:35 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDk7MTE6MzI6MDggYS4gbS47MzM5Ng=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDk7MDU6NDk6MDEgcC4gbS47MjszNTI0"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMDk7MDY6NDE6MzUgcC4gbS47MzszNTI1"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -21,7 +21,7 @@
                 <assign variable="numCharacters" expression="ReadNumber(&quot;Enter the number of characters: &quot;)"/>
                 <assign variable="color" expression="ReadString(&quot;Enter the color (white or black or gold): &quot;)"/>
                 <assign variable="finalPrice" expression="CalculateFinalPrice(woodType, numCharacters, color)"/>
-                <if expression="woodType == &quot;oak&quot; and color == &quot;white&quot;  and numCharacters == 5">
+                <if expression="woodType == &quot;pine&quot; and color == &quot;gold&quot;  and numCharacters &gt;= 10">
                     <then>
                         <call expression="DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice)"/>
                     </then>
