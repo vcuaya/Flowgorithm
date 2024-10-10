@@ -16,15 +16,25 @@ class Program
         string color = default;
         int finalPrice = default;
 
-        idNumber = ReadPositiveInteger("Enter the ID number: ");
-        clientName = ReadString("Enter the client name: ");
-        woodType = ReadString("Enter the wood type [pine(p) or oak(o)]: ", ["p", "o"]);
-        numCharacters = ReadPositiveInteger("Enter the number of characters: ");
-        color = ReadString("Enter the color [white(w) or black(b) or gold(g)]: ", ["w", "b", "g"]);
+        const int SENTINEL = 999;
 
-        finalPrice = CalculateFinalPrice(woodType, numCharacters, color);
+        idNumber = ReadPositiveInteger($"Enter the ID number or {SENTINEL} to finish: ");
 
-        DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice);
+        while (idNumber != SENTINEL)
+        {
+            clientName = ReadString("Enter the client name: ");
+            woodType = ReadString("Enter the wood type [pine(p) or oak(o)]: ", ["p", "o"]);
+            numCharacters = ReadPositiveInteger("Enter the number of characters: ");
+            color = ReadString("Enter the color [white(w) or black(b) or gold(g)]: ", ["w", "b", "g"]);
+            finalPrice = CalculateFinalPrice(woodType, numCharacters, color);
+
+            if (woodType.ToLower() == "o" && color.ToLower() == "w" && numCharacters == 5)
+            {
+                DisplayResults(idNumber, clientName, woodType, numCharacters, color, finalPrice);
+            }
+
+            idNumber = ReadPositiveInteger($"Enter the ID number or {SENTINEL} to finish: ");
+        }
 
         WriteLine("Program finished. Press any key to exit.");
         ReadKey();
