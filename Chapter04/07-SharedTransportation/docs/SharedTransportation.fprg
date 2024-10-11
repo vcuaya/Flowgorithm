@@ -4,24 +4,28 @@
         <attribute name="name" value="SharedTransportation"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-10 06:28:50 p. m."/>
+        <attribute name="saved" value="2024-10-10 06:57:15 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMTA7MTA6MTY6MjYgYS4gbS47MzM4OQ=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMTA7MDY6Mjg6NTAgcC4gbS47MTszNTE3"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMTA7MDY6NTc6MTUgcC4gbS47MjszNTIx"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="name, city" type="String" array="False" size=""/>
-            <assign variable="name" expression="ReadString(&quot;Enter the name of the employee: &quot;)"/>
-            <assign variable="city" expression="ReadString(&quot;Enter the city where the employee lives: &quot;)"/>
-            <if expression="city = &quot;Woodstock&quot; or city = &quot;Wonder Lake&quot;">
-                <then>
-                    <output expression="&quot;The employee [&quot; &amp; name &amp; &quot;] is eligible to share the vehicle.&quot;" newline="True"/>
-                </then>
-                <else>
-                    <output expression="&quot;The employee [&quot; &amp; name &amp; &quot;] is not eligible to share the vehicle.&quot;" newline="True"/>
-                </else>
-            </if>
+            <declare name="name, city, sentinel" type="String" array="False" size=""/>
+            <assign variable="sentinel" expression="&quot;exit&quot;"/>
+            <assign variable="name" expression="ReadString(&quot;Enter the name of the employee or &quot; &amp; sentinel &amp; &quot; to finish: &quot;)"/>
+            <while expression="name != sentinel">
+                <assign variable="city" expression="ReadString(&quot;Enter the city where the employee lives: &quot;)"/>
+                <if expression="city = &quot;Woodstock&quot; or city = &quot;Wonder Lake&quot;">
+                    <then>
+                        <output expression="&quot;The employee [&quot; &amp; name &amp; &quot;] is eligible to share the vehicle.&quot;" newline="True"/>
+                    </then>
+                    <else>
+                        <output expression="&quot;The employee [&quot; &amp; name &amp; &quot;] is not eligible to share the vehicle.&quot;" newline="True"/>
+                    </else>
+                </if>
+                <assign variable="name" expression="ReadString(&quot;Enter the name of the employee or &quot; &amp; sentinel &amp; &quot; to finish: &quot;)"/>
+            </while>
             <output expression="&quot;Program finished.&quot;" newline="True"/>
         </body>
     </function>
