@@ -11,6 +11,10 @@ Problema:
     a) Un programa que acepte los datos de un empleado y lo despliegue con un
     mensaje que indique si es un candidato para compartir el vehículo.
 
+    b) Un programa que acepte en forma continua los datos de los empleados
+    hasta que se introduzca un valor centinela y despliegue una lista de todos
+    los empleados que son candidatos para compartir el vehículo.
+
 Objetivos:
     Desplegar e indicar si un candidato es apto para compartir el vehículo.
 
@@ -29,16 +33,22 @@ Main
     declare
         string name
         string city
+        const string SENTINEL = "exit"
     end declare
 
-    set name = ReadString("Enter the name of the employee: ")
-    set city = ReadString("Enter the city where the employee lives: ")
+    set name = ReadString("Enter the name of the employee or " + SENTINEL + " to finish: ")
 
-    if city = "Woodstock" or city = "Wonder Lake" then
-        output "The employee [" + name + "] is eligible to share the vehicle."
-    else
-        output "The employee [" + name + "] is not eligible to share the vehicle."
-    end if
+    while name != SENTINEL do
+        set city = ReadString("Enter the city where the employee lives: ")
+
+        if city = "Woodstock" or city = "Wonder Lake" then
+            output "The employee [" + name + "] is eligible to share the vehicle."
+        else
+            output "The employee [" + name + "] is not eligible to share the vehicle."
+        end if
+
+        set name = ReadString("Enter the name of the employee or " + SENTINEL + " to finish: ")
+    end while
 
     output "Program finished."
 Stop
