@@ -4,23 +4,58 @@
         <attribute name="name" value="HighPerforming"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-14 03:56:22 p. m."/>
+        <attribute name="saved" value="2024-10-14 05:16:16 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMTQ7MDE6Mzc6MzEgcC4gbS47MzQwNw=="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMTQ7MDM6NTY6MjIgcC4gbS47MTszNTE4"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMTQ7MDU6MTY6MTYgcC4gbS47MzszNTIx"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="employeeName, employeeLastName" type="String" array="False" size=""/>
-            <declare name="employeeTurns, employeeTransactions, employeeValue, productivity" type="Real" array="False" size=""/>
-            <assign variable="employeeName" expression="ReadString(&quot;Enter the name of the employee: &quot;)"/>
-            <assign variable="employeeLastName" expression="ReadString(&quot;Enter the last name of the employee: &quot;)"/>
-            <assign variable="employeeTurns" expression="ReadNumber(&quot;Enter the number of turns: &quot;)"/>
-            <assign variable="employeeTransactions" expression="ReadNumber(&quot;Enter the number of transactions: &quot;)"/>
-            <assign variable="employeeValue" expression="ReadNumber(&quot;Enter the value of the transactions: &quot;)"/>
-            <assign variable="productivity" expression="CalculateProductivity(employeeValue, employeeTransactions, employeeTurns)"/>
-            <call expression="DisplayResults(employeeName, employeeLastName, productivity)"/>
+            <declare name="employeeName, employeeLastName, sentinel" type="String" array="False" size=""/>
+            <declare name="employeeTurns, employeeTransactions, employeeValue, productivity, bonus" type="Real" array="False" size=""/>
+            <assign variable="sentinel" expression="&quot;exit&quot;"/>
+            <assign variable="employeeName" expression="ReadString(&quot;Enter the name of the employee or &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+            <while expression="employeeName != SENTINEL">
+                <assign variable="employeeLastName" expression="ReadString(&quot;Enter the last name of the employee: &quot;)"/>
+                <assign variable="employeeTurns" expression="ReadNumber(&quot;Enter the number of turns: &quot;)"/>
+                <assign variable="employeeTransactions" expression="ReadNumber(&quot;Enter the number of transactions: &quot;)"/>
+                <assign variable="employeeValue" expression="ReadNumber(&quot;Enter the value of the transactions: &quot;)"/>
+                <assign variable="productivity" expression="CalculateProductivity(employeeValue, employeeTransactions, employeeTurns)"/>
+                <assign variable="bonus" expression="CalculateBonus(productivity)"/>
+                <call expression="DisplayResults(employeeName, employeeLastName, productivity, bonus)"/>
+                <assign variable="employeeName" expression="ReadString(&quot;Enter the name of the employee or &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+            </while>
             <output expression="&quot;Program finished.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalculateBonus" type="Real" variable="bonus">
+        <parameters>
+            <parameter name="productivity" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="bonus" type="Real" array="False" size=""/>
+            <if expression="productivity &gt; 200">
+                <then>
+                    <assign variable="bonus" expression="200"/>
+                </then>
+                <else>
+                    <if expression="productivity &gt; 80">
+                        <then>
+                            <assign variable="bonus" expression="100"/>
+                        </then>
+                        <else>
+                            <if expression="productivity &gt; 30">
+                                <then>
+                                    <assign variable="bonus" expression="50"/>
+                                </then>
+                                <else>
+                                    <assign variable="bonus" expression="25"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
         </body>
     </function>
     <function name="CalculateProductivity" type="Real" variable="productivity">
@@ -39,20 +74,21 @@
             <parameter name="name" type="String" array="False"/>
             <parameter name="lastName" type="String" array="False"/>
             <parameter name="productivity" type="Real" array="False"/>
+            <parameter name="bonus" type="Real" array="False"/>
         </parameters>
         <body>
+            <declare name="highPerforming" type="String" array="False" size=""/>
             <if expression="productivity &gt;= 50">
                 <then>
-                    <output expression="&quot;Employee name: &quot; &amp; name" newline="True"/>
-                    <output expression="&quot;Employee last name: &quot; &amp; lastName" newline="True"/>
-                    <output expression="&quot;Productivity: &quot; &amp; productivity &amp; &quot; ***&quot;" newline="True"/>
+                    <assign variable="highPerforming" expression="&quot;***&quot;"/>
                 </then>
                 <else>
-                    <output expression="&quot;Employee name: &quot; &amp; name" newline="True"/>
-                    <output expression="&quot;Employee last name: &quot; &amp; lastName" newline="True"/>
-                    <output expression="&quot;Productivity: &quot; &amp; productivity" newline="True"/>
+                    <assign variable="highPerforming" expression="&quot;&quot;"/>
                 </else>
             </if>
+            <output expression="&quot;Employee name: &quot; &amp; name" newline="True"/>
+            <output expression="&quot;Employee last name: &quot; &amp; lastName" newline="True"/>
+            <output expression="&quot;Productivity: &quot; &amp; productivity &amp; &quot; &quot; &amp; highPerforming" newline="True"/>
         </body>
     </function>
     <function name="ReadNumber" type="Real" variable="number">
