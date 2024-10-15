@@ -8,16 +8,26 @@ class Program
         int turns, transactions;
         decimal value;
         decimal productivity;
+        int bonus;
 
-        name = ReadString("Enter employee name: ");
-        lastName = ReadString("Enter employee last name: ");
-        turns = ReadPositiveInteger("Enter number of turns: ");
-        transactions = ReadPositiveInteger("Enter number of transactions: ");
-        value = ReadPositiveDecimal("Enter value: ");
+        const string SENTINEL = "exit";
 
-        productivity = CalculateProductivity(turns, transactions, value);
+        name = ReadString("Enter employee name or " + SENTINEL + " to finish: ");
 
-        DisplayResults(name, lastName, productivity);
+        while (name.ToLower().Trim() != SENTINEL)
+        {
+            lastName = ReadString("Enter employee last name: ");
+            turns = ReadPositiveInteger("Enter number of turns: ");
+            transactions = ReadPositiveInteger("Enter number of transactions: ");
+            value = ReadPositiveDecimal("Enter value of transactions: ");
+
+            productivity = CalculateProductivity(turns, transactions, value);
+            bonus = CalculateBonus(productivity);
+
+            DisplayResults(name, lastName, productivity, bonus);
+
+            name = ReadString("Enter employee name or " + SENTINEL + " to finish: ");
+        }
 
         WriteLine("Program finished. Press any key to exit.");
         ReadKey();
@@ -33,7 +43,7 @@ class Program
     {
         int number;
         Write(message);
-        
+
         while (true)
         {
             if (int.TryParse(ReadLine(), out number) && number > 0)
@@ -53,7 +63,7 @@ class Program
     {
         decimal number;
         Write(message);
-        
+
         while (true)
         {
             if (decimal.TryParse(ReadLine(), out number) && number > 0)
@@ -74,17 +84,41 @@ class Program
         return value / transactions / turns;
     }
 
-    static void DisplayResults(string name, string lastName, decimal productivity)
+    static int CalculateBonus(decimal productivity)
+    {
+        int bonus = default;
+
+        if (productivity <= 30)
+        {
+            bonus = 25;
+        }
+        else if (productivity < 80)
+        {
+            bonus = 50;
+        }
+        else if (productivity < 200)
+        {
+            bonus = 100;
+        }
+        else
+        {
+            bonus = 200;
+        }
+
+        return bonus;
+    }
+
+    static void DisplayResults(string name, string lastName, decimal productivity, int bonus)
     {
         string highPerforming = productivity >= 50 ? "***" : "";
 
         WriteLine();
-        WriteLine("+--------------+-----------------+--------------+-----------------+");
-        WriteLine("|     Name     |    Last Name    | Productivity | High Performing |");
-        WriteLine("+--------------+-----------------+--------------+-----------------+");
-        WriteLine($"| {name,12} | {lastName,15} | {productivity,12:N2} | {highPerforming,15} |");
-        WriteLine("+--------------+-----------------+--------------+-----------------+");
+        WriteLine("+--------------+-----------------+--------------+-------+-----------------+");
+        WriteLine("|     Name     |    Last Name    | Productivity | Bonus | High Performing |");
+        WriteLine("+--------------+-----------------+--------------+-------+-----------------+");
+        WriteLine($"| {name,12} | {lastName,15} | {productivity,12:N2} | {bonus,5:C0} | {highPerforming,15} |");
+        WriteLine("+--------------+-----------------+--------------+-------+-----------------+");
         WriteLine();
     }
-        
+
 }
