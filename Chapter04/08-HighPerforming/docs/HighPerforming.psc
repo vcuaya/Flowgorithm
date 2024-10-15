@@ -23,6 +23,10 @@ Problema:
            bono es de $100.
         4. Si la puntuación de productividad es 200 o más, el bono es de $200.
 
+    c) Un programa que refleje el siguiente nuevo hecho de manera eficiente:
+        1. Sesenta por ciento de los empleados tienen una puntuación de
+           productividad mayor que 200.
+
 Objetivos:
     Desplegar los datos de los vendedores de alto rendimiento.
 
@@ -91,15 +95,17 @@ return productivity
 
 CalculateBonus(num productivity)
     declare num bonus
-    if productivity <= 30 then
-        set bonus = 25
-    else if productivity < 80 then
-        set bonus = 50
-    else if productivity < 200 then
-        set bonus = 100
-    else
+
+    if productivity > 200 then
         set bonus = 200
+    else if productivity > 80 then
+        set bonus = 100
+    else if productivity > 30 then
+        set bonus = 50
+    else
+        set bonus = 25
     end if
+    
 return bonus
 
 DisplayResults(string name, string lastName, num productivity, num bonus)
