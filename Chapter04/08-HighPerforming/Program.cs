@@ -88,21 +88,21 @@ class Program
     {
         int bonus = default;
 
-        if (productivity <= 30)
+        if (productivity > 200)
         {
-            bonus = 25;
+            bonus = 200;
         }
-        else if (productivity < 80)
-        {
-            bonus = 50;
-        }
-        else if (productivity < 200)
+        else if (productivity > 80)
         {
             bonus = 100;
         }
+        else if (productivity > 30)
+        {
+            bonus = 50;
+        }
         else
         {
-            bonus = 200;
+            bonus = 25;
         }
 
         return bonus;
