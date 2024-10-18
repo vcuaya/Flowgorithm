@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="PrintOneToTwenty"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-18 02:02:29 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDU7MDU6MzU6MzcgcC4gbS47MzQyMw=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMDktMDU7MDU6NDU6MjQgcC4gbS47MTszNTI4"/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzAyOjAyOjI5IHAuIG0uOzE7Mjk5Mg=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Imprimir los n&#250;meros de 1 a 20"/>
+            <declare name="number" type="Integer" array="False" size=""/>
+            <for variable="number" start="1" end="20" direction="inc" step="1">
+                <output expression="number" newline="True"/>
+            </for>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
