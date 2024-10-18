@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="PrintDoubleAndTriple"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-18 05:02:16 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzAzOjQ3OjIyIHAuIG0uOzI4ODc="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA1OjAyOjE2IHAuIG0uOzE7Mjk5MQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Imprimir los n&#250;meros de 1 a 20 y sus valores al doble y al triple"/>
+            <declare name="number" type="Integer" array="False" size=""/>
+            <for variable="number" start="1" end="20" direction="inc" step="1">
+                <output expression="&quot;Original: &quot; &amp; number" newline="True"/>
+                <output expression="&quot;Doble: &quot; &amp; number * 2" newline="True"/>
+                <output expression="&quot;Triple: &quot; &amp; number * 3" newline="True"/>
+            </for>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
