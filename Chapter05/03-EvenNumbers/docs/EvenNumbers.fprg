@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="EvenNumbers"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-18 05:09:58 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA1OjA4OjA5IHAuIG0uOzI4OTE="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA1OjA5OjU4IHAuIG0uOzE7MzAwNA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Imprimir los n&#250;meros pares de 2 a 100"/>
+            <declare name="number" type="Integer" array="False" size=""/>
+            <for variable="number" start="2" end="100" direction="inc" step="2">
+                <output expression="number" newline="True"/>
+            </for>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
