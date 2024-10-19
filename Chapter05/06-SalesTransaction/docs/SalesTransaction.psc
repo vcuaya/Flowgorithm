@@ -8,6 +8,11 @@
         que el cliente no hace compras nuevas y que liquida el saldo con
         pagos mensuales iguales.
 
+        a) Modifique la aplicación de Homestead Furniture Store de modo que
+        se ejecute de manera continua para cualquier cliente cantidad de
+        clientes hasta que se suministre un valor centinela para el número
+        de cuenta.
+
     Objetivos:
         Mostrar los datos del cliente y la deuda desglosada por mes.
 
@@ -32,22 +37,28 @@ Main
         num purchase
         num index
         num payment
+        string SENTINEL = "exit"
     end declare
 
-    set accountNumber = ReadString("Enter account number: ")
-    set customerName = ReadString("Enter customer name: ")
-    set purchase = ReadNumber("Enter price of purchase: ")
-    set payment = purchase / 12
-    
-    output "Account number: " + accountNumber
-    output "Customer name: " + customerName
-    output "Total purchase: " + purchase
-    output "Monthly payments:"
-    
-    for index = 1 to 12 step 1
-        output "Month " + index + ": " + payment
-    end for
+    set accountNumber = ReadString("Enter account number or " + SENTINEL + " to finish: ")
 
+    while accountNumber != SENTINEL do
+        set customerName = ReadString("Enter customer name: ")
+        set purchase = ReadNumber("Enter price of purchase: ")
+        set payment = purchase / 12
+        
+        output "Account number: " + accountNumber
+        output "Customer name: " + customerName
+        output "Total purchase: " + purchase
+        output "Monthly payments:"
+        
+        for index = 1 to 12 step 1
+            output "Month " + index + ": " + payment
+        end for
+
+        set accountNumber = ReadString("Enter account number or " + SENTINEL + " to finish: ")
+    end while
+    
     output "Program finished."
 Stop
 
