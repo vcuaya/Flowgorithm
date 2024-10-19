@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ReverseOrder"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-18 07:40:36 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA3OjM4OjAwIHAuIG0uOzI4ODc="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA3OjQwOjM2IHAuIG0uOzE7Mjk5Nw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Imprimir los n&#250;meros de 25 a 0 en orden inverso"/>
+            <declare name="number" type="Integer" array="False" size=""/>
+            <for variable="number" start="25" end="0" direction="dec" step="1">
+                <output expression="number" newline="True"/>
+            </for>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
