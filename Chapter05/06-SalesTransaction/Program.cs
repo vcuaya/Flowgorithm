@@ -1,21 +1,27 @@
-﻿
-namespace SalesTransaction;
+﻿namespace SalesTransaction;
 
 class Program
 {
     static void Main(string[] args)
     {
-        string accountNumber = default;
-        string customerName = default;
-        decimal purchase = default;
-        decimal payment = default;
+        string accountNumber;
+        string customerName;
+        decimal purchase;
+        decimal payment;
+        const string SENTINEL = "exit";
 
-        accountNumber = ReadString("Enter account number: ");
-        customerName = ReadString("Enter customer name: ");
-        purchase = ReadPositiveDecimal("Enter price of purchase: ");
-        payment = purchase / 12;
+        accountNumber = ReadString($"Enter account number or {SENTINEL} to finish: ");
 
-        DisplayResults(accountNumber, customerName, purchase, payment);
+        while (accountNumber.ToLower().Trim() != SENTINEL)
+        {
+            customerName = ReadString("Enter customer name: ");
+            purchase = ReadPositiveDecimal("Enter price of purchase: ");
+            payment = purchase / 12;
+
+            DisplayResults(accountNumber, customerName, purchase, payment);
+
+            accountNumber = ReadString($"Enter account number or {SENTINEL} to finish: ");
+        }
 
         WriteLine("Program finished. Press any key to exit...");
         ReadKey();
@@ -74,9 +80,25 @@ class Program
         return number;
     }
 
-    private static string? ReadString(string message)
+    private static string ReadString(string message)
     {
+        string? text;
+
         Write(message);
-        return ReadLine();
+
+        while (true)
+        {
+            text = ReadLine();
+            if (text != null && text.Trim().Length > 0)
+            {
+                break;
+            }
+            else
+            {
+                Write($"Invalid input. {message}");
+            }
+        }
+
+        return text;
     }
 }
