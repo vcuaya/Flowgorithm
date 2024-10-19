@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="SumOneToN"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-18 08:04:17 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA3OjU5OjAwIHAuIG0uOzI4OTA="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA4OjA0OjE3IHAuIG0uOzE7Mjk5Nw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Sumar todos los n&#250;meros desde 1 hasta N."/>
+            <declare name="number, index, sum" type="Integer" array="False" size=""/>
+            <assign variable="number" expression="ReadNumber(&quot;Enter a number: &quot;)"/>
+            <assign variable="sum" expression="0"/>
+            <for variable="index" start="1" end="number" direction="inc" step="1">
+                <assign variable="sum" expression="sum + index"/>
+            </for>
+            <output expression="&quot;The sum from 1 to &quot; &amp; number &amp; &quot; is: &quot; &amp; sum" newline="True"/>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Integer" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Integer" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
