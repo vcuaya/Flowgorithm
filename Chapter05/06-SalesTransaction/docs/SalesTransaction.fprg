@@ -4,28 +4,32 @@
         <attribute name="name" value="SalesTransaction"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-18 08:44:28 p. m."/>
+        <attribute name="saved" value="2024-10-18 09:42:55 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA4OjMzOjI0IHAuIG0uOzI4ODk="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA4OjQ0OjI4IHAuIG0uOzE7MzAwMw=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTE4OzA5OjQyOjU1IHAuIG0uOzI7MzAwMw=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <comment text="Mostrar los datos del cliente y la deuda desglosada por mes."/>
-            <declare name="accountNumber, customerName" type="String" array="False" size=""/>
+            <declare name="accountNumber, customerName, sentinel" type="String" array="False" size=""/>
             <declare name="purchase, payment" type="Real" array="False" size=""/>
             <declare name="index" type="Integer" array="False" size=""/>
-            <assign variable="accountNumber" expression="ReadString(&quot;Enter account number: &quot;)"/>
-            <assign variable="customerName" expression="ReadString(&quot;Enter customer name: &quot;)"/>
-            <assign variable="purchase" expression="ReadNumber(&quot;Enter price of purchase: &quot;)"/>
-            <assign variable="payment" expression="purchase / 12"/>
-            <output expression="&quot;Account number: &quot; &amp; accountNumber" newline="True"/>
-            <output expression="&quot;Customer name: &quot; &amp; customerName" newline="True"/>
-            <output expression="&quot;Total purchase: &quot; &amp; purchase" newline="True"/>
-            <output expression="&quot;Monthly payments:&quot;" newline="True"/>
-            <for variable="index" start="1" end="12" direction="inc" step="1">
-                <output expression="&quot;Month &quot; &amp; index &amp; &quot;: &quot; &amp; payment" newline="True"/>
-            </for>
+            <assign variable="sentinel" expression="&quot;exit&quot;"/>
+            <assign variable="accountNumber" expression="ReadString(&quot;Enter account number or &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+            <while expression="accountNumber != sentinel">
+                <assign variable="customerName" expression="ReadString(&quot;Enter customer name: &quot;)"/>
+                <assign variable="purchase" expression="ReadNumber(&quot;Enter price of purchase: &quot;)"/>
+                <assign variable="payment" expression="purchase / 12"/>
+                <output expression="&quot;Account number: &quot; &amp; accountNumber" newline="True"/>
+                <output expression="&quot;Customer name: &quot; &amp; customerName" newline="True"/>
+                <output expression="&quot;Total purchase: &quot; &amp; purchase" newline="True"/>
+                <output expression="&quot;Monthly payments:&quot;" newline="True"/>
+                <for variable="index" start="1" end="12" direction="inc" step="1">
+                    <output expression="&quot;Month &quot; &amp; index &amp; &quot;: &quot; &amp; payment" newline="True"/>
+                </for>
+                <assign variable="accountNumber" expression="ReadString(&quot;Enter account number or &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+            </while>
             <output expression="&quot;Program finished&quot;" newline="True"/>
         </body>
     </function>
