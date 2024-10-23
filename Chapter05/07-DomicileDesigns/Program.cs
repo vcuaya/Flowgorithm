@@ -16,47 +16,54 @@ class Program
         const decimal INTEREST_RATE = 0.0125m;
         const decimal PAYMENT_RATE = 0.07m;
         const int MONTHS = 12;
+        const string SENTINEL = "exit";
 
-        accountNumber = ReadString("Enter account number: ");
-        customerName = ReadString("Enter customer name: ");
-        purchase = ReadPositiveDecimal("Enter price of purchase: ");
-        balance = purchase;
+        accountNumber = ReadString($"Enter account number or {SENTINEL} to finish: ");
 
-        WriteLine();
-        WriteLine("+----------------------------------------------------------------------------+");
-        WriteLine($"| Account number: {accountNumber,58} |");
-        WriteLine($"| Customer name: {customerName,59} |");
-        WriteLine($"| Purchase amount: {purchase,57:C} |");
-        WriteLine("+----------------------------------------------------------------------------+");
-        WriteLine("+-----------------+----------------+-----------------+-----------------------+");
-        WriteLine("|     Initial     |    Interest    |      Final      |    Monthly Payment    |");
-        WriteLine("+-----------------+----------------+-----------------+-----------------------+");
-
-        month = 1;
-        while (month <= MONTHS && balance > 25)
+        while (accountNumber.ToLower().Trim() != SENTINEL)
         {
-            interest = balance * INTEREST_RATE;
-            Write($"| {balance,15:C} | {interest,14:C} ");
+            customerName = ReadString("Enter customer name: ");
+            purchase = ReadPositiveDecimal("Enter price of purchase: ");
+            balance = purchase;
 
-            balance += interest;
-            payment = balance * PAYMENT_RATE;
-            Write($"| {balance + interest,15:C} | Month {month,2}: {payment,11:C} |");
+            WriteLine();
+            WriteLine("+----------------------------------------------------------------------------+");
+            WriteLine($"| Account number: {accountNumber,58} |");
+            WriteLine($"| Customer name: {customerName,59} |");
+            WriteLine($"| Purchase amount: {purchase,57:C} |");
+            WriteLine("+----------------------------------------------------------------------------+");
+            WriteLine("+-----------------+----------------+-----------------+-----------------------+");
+            WriteLine("|     Initial     |    Interest    |      Final      |    Monthly Payment    |");
+            WriteLine("+-----------------+----------------+-----------------+-----------------------+");
+
+            month = 1;
+            while (month <= MONTHS && balance > 25)
+            {
+                interest = balance * INTEREST_RATE;
+                Write($"| {balance,15:C} | {interest,14:C} ");
+
+                balance += interest;
+                payment = balance * PAYMENT_RATE;
+                Write($"| {balance + interest,15:C} | Month {month,2}: {payment,11:C} |");
+                WriteLine();
+
+                balance -= payment;
+                month += 1;
+            }
+
+            WriteLine("+-----------------+----------------+-----------------+-----------------------+");
             WriteLine();
 
-            balance -= payment;
-            month += 1;
-        }
+            if (balance <= 25)
+            {
+                WriteLine($"Customer can liquidate. Final balance is {balance:C}.");
+            }
+            else
+            {
+                WriteLine($"Final balance after 12 months is over {balance:C}.");
+            }
 
-        WriteLine("+-----------------+----------------+-----------------+-----------------------+");
-        WriteLine();
-
-        if (balance <= 25)
-        {
-            WriteLine($"Customer can liquidate. Final balance is {balance:C}.");
-        }
-        else
-        {
-            WriteLine($"Final balance after 12 months is over {balance:C}.");
+            accountNumber = ReadString($"Enter account number or {SENTINEL} to finish: ");
         }
 
         WriteLine("Program finished. Press any key to exit...");
