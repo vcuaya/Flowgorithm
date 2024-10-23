@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="YabeOnlineAuctions"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-22 09:25:54 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTIyOzA4OjA3OjQ3IHAuIG0uOzI4OTA="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTIyOzA5OjI1OjU0IHAuIG0uOzE7Mjk5Nw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Mostrar el precio de cada art&#237;culo durante cada semana."/>
+            <declare name="productId, productName, sentinel" type="String" array="False" size=""/>
+            <declare name="initialPrice, currentPrice, rate, week, weeks" type="Real" array="False" size=""/>
+            <assign variable="sentinel" expression="&quot;exit&quot;"/>
+            <assign variable="rate" expression="0.12"/>
+            <assign variable="weeks" expression="6"/>
+            <assign variable="productId" expression="ReadString(&quot;Enter product ID or &quot; &amp; sentinel &amp; &quot; to finish: &quot;)"/>
+            <while expression="productId != sentinel">
+                <assign variable="productName" expression="ReadString(&quot;Enter product name: &quot;)"/>
+                <assign variable="initialPrice" expression="ReadNumber(&quot;Enter initial price: &quot;)"/>
+                <assign variable="currentPrice" expression="initialPrice"/>
+                <output expression="&quot;Product ID: &quot; &amp; productId" newline="True"/>
+                <output expression="&quot;Product name: &quot; &amp; productName" newline="True"/>
+                <output expression="&quot;Initial price: &quot; &amp; initialPrice" newline="True"/>
+                <for variable="week" start="1" end="weeks" direction="inc" step="1">
+                    <if expression="week != 1">
+                        <then>
+                            <assign variable="currentPrice" expression="currentPrice * (1 - rate)"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <output expression="&quot;Week &quot; &amp; week &amp; &quot;: &quot; &amp; currentPrice" newline="True"/>
+                </for>
+                <assign variable="productId" expression="ReadString(&quot;Enter product ID or &quot; &amp; sentinel &amp; &quot; to finish: &quot;)"/>
+            </while>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+    <function name="ReadString" type="String" variable="text">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="text" type="String" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="text"/>
+        </body>
+    </function>
+</flowgorithm>
