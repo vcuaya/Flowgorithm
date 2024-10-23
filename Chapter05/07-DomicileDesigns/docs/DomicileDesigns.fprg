@@ -4,51 +4,55 @@
         <attribute name="name" value="DomicileDesigns"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-10-22 07:17:41 p. m."/>
+        <attribute name="saved" value="2024-10-22 07:32:44 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTIyOzEyOjI3OjIzIHAuIG0uOzI4ODE="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTIyOzA3OjE3OjQxIHAuIG0uOzE7Mjk5Mg=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTIyOzA3OjMyOjQ0IHAuIG0uOzI7Mjk5Mw=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <comment text="Mostrar los datos del cliente y la deuda desglosada por mes."/>
-            <declare name="accountNumber, customerName" type="String" array="False" size=""/>
+            <declare name="accountNumber, customerName, sentinel" type="String" array="False" size=""/>
             <declare name="purchase, balance, payment, month" type="Real" array="False" size=""/>
             <declare name="interestRate, paymentRate, months" type="Real" array="False" size=""/>
             <assign variable="interestRate" expression="0.0125"/>
             <assign variable="paymentRate" expression="0.07"/>
             <assign variable="months" expression="12"/>
-            <assign variable="accountNumber" expression="ReadString(&quot;Enter account number: &quot;)"/>
-            <assign variable="customerName" expression="ReadString(&quot;Enter customer name: &quot;)"/>
-            <assign variable="purchase" expression="ReadNumber(&quot;Enter purchase amount: &quot;)"/>
-            <assign variable="balance" expression="purchase"/>
-            <output expression="&quot;Account number: &quot; &amp; accountNumber" newline="True"/>
-            <output expression="&quot;Customer name: &quot; &amp; customerName" newline="True"/>
-            <output expression="&quot;Purchase amount: &quot; &amp; purchase" newline="True"/>
-            <assign variable="month" expression="1"/>
-            <while expression="month &lt;= MONTHS and balance &gt; 25">
-                <output expression="&quot;Initial balance is &quot; &amp; balance" newline="True"/>
-                <assign variable="balance" expression="balance * (1 + interestRate)"/>
-                <output expression="&quot;Balance after interest is &quot; &amp; balance" newline="True"/>
-                <assign variable="payment" expression="balance * paymentRate"/>
-                <output expression="&quot;Payment is &quot; &amp; payment" newline="True"/>
-                <if expression="payment &gt; balance">
+            <assign variable="sentinel" expression="&quot;exit&quot;"/>
+            <assign variable="accountNumber" expression="ReadString(&quot;Enter account number or &quot; &amp; sentinel &amp; &quot; to finish: &quot;)"/>
+            <while expression="accountNumber != sentinel">
+                <assign variable="customerName" expression="ReadString(&quot;Enter customer name: &quot;)"/>
+                <assign variable="purchase" expression="ReadNumber(&quot;Enter purchase amount: &quot;)"/>
+                <assign variable="balance" expression="purchase"/>
+                <output expression="&quot;Account number: &quot; &amp; accountNumber" newline="True"/>
+                <output expression="&quot;Customer name: &quot; &amp; customerName" newline="True"/>
+                <output expression="&quot;Purchase amount: &quot; &amp; purchase" newline="True"/>
+                <assign variable="month" expression="1"/>
+                <while expression="month &lt;= MONTHS and balance &gt; 25">
+                    <output expression="&quot;Initial balance is &quot; &amp; balance" newline="True"/>
+                    <assign variable="balance" expression="balance * (1 + interestRate)"/>
+                    <output expression="&quot;Balance after interest is &quot; &amp; balance" newline="True"/>
+                    <assign variable="payment" expression="balance * paymentRate"/>
+                    <output expression="&quot;Payment is &quot; &amp; payment" newline="True"/>
+                    <if expression="payment &gt; balance">
+                        <then>
+                            <assign variable="payment" expression="balance"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <assign variable="balance" expression="balance - payment"/>
+                    <assign variable="month" expression="month + 1"/>
+                </while>
+                <if expression="balance &lt;= 25">
                     <then>
-                        <assign variable="payment" expression="balance"/>
+                        <output expression="&quot;Customer can liquidate. Final balance is &quot; &amp; balance" newline="True"/>
                     </then>
-                    <else/>
+                    <else>
+                        <output expression="&quot;Final balance after 12 months is &quot; &amp; balance" newline="True"/>
+                    </else>
                 </if>
-                <assign variable="balance" expression="balance - payment"/>
-                <assign variable="month" expression="month + 1"/>
+                <assign variable="accountNumber" expression="ReadString(&quot;Enter account number or &quot; &amp; sentinel &amp; &quot; to finish: &quot;)"/>
             </while>
-            <if expression="balance &lt;= 25">
-                <then>
-                    <output expression="&quot;Customer can liquidate. Final balance is &quot; &amp; balance" newline="True"/>
-                </then>
-                <else>
-                    <output expression="&quot;Final balance after 12 months is &quot; &amp; balance" newline="True"/>
-                </else>
-            </if>
             <output expression="&quot;Program finished&quot;" newline="True"/>
         </body>
     </function>
