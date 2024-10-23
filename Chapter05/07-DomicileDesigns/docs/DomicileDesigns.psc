@@ -85,3 +85,15 @@ Main
 
     output "Program finished."
 Stop
+
+ReadString(string message)
+    declare userInput
+    output message
+    input userInput
+return userInput
+
+ReadNumber(string message)
+    declare userInput
+    output message
+    input userInput
+return userInput
