@@ -9,6 +9,11 @@
         de interés al saldo, y luego el cliente hace un pago igual a 7% del
         saldo actual. Suponga que el cliente no hace compras nuevas.
 
+        a) Modifique la aplicación de Domicile Designs de modo que se
+        ejecute en forma continua para cualquier cantidad de clientes
+        hasta que se suministre un valor centinela para el número de
+        cuenta.
+
     Objetivo:
         Mostrar los datos del cliente y la deuda desglosada por mes.
 
@@ -36,34 +41,40 @@ Main
         const num PAYMENT_RATE = 0.07
         const num MONTHS = 12
         num month
+        const string SENTINEL = "exit"
     end declare
 
-    set accountNumber = ReadNumber("Enter account number: ")
-    set customerName = ReadString("Enter customer name: ")
-    set purchase = ReadNumber("Enter purchase amount: ")
-    set balance = purchase
+    set accountNumber = ReadString("Enter account number or " + SENTINEL + " to finish: ")
 
-    output "Account number: " + accountNumber
-    output "Customer name: " + customerName
-    output "Purchase amount: " + purchase
-
-    set month = 1
-    while month <= MONTHS and balance > 25 do
-        output "Initial balance is " + balance
+    while accountNumber != SENTINEL do
+        set customerName = ReadString("Enter customer name: ")
+        set purchase = ReadNumber("Enter purchase amount: ")
+        set balance = purchase
         
-        set balance = balance * (1 + INTEREST_RATE)
-        output "Balance after interest is " + balance
-
-        set payment = balance * PAYMENT_RATE
-        output "Payment is " + payment
+        output "Account number: " + accountNumber
+        output "Customer name: " + customerName
+        output "Purchase amount: " + purchase
         
-        if payment > balance then
-            set payment = balance
-        end if
+        set month = 1
+        while month <= MONTHS and balance > 25 do
+            output "Initial balance is " + balance
+            
+            set balance = balance * (1 + INTEREST_RATE)
+            output "Balance after interest is " + balance
+            
+            set payment = balance * PAYMENT_RATE
+            output "Payment is " + payment
+            
+            if payment > balance then
+               set payment = balance
+            end if
+        
+            set balance = balance - payment
+        
+            set month = month + 1
+        end while
 
-        set balance = balance - payment
-
-        set month = month + 1
+        set accountNumber = ReadString("Enter account number or " + SENTINEL + " to finish: ")
     end while
 
     if balance <= 25 then
