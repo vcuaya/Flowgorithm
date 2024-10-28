@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="RetirementPlanning"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-28 05:49:04 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMjg7MDM6NTc6MTQgcC4gbS47MzQxNw=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMjg7MDU6NDk6MDQgcC4gbS47MTszNTI3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Mostrar el calendario de retiro de un usuario."/>
+            <declare name="yearsLeft, annualSavings, totalSavings, balance, year, interestRate, annualExpense, maxYears" type="Real" array="False" size=""/>
+            <assign variable="interestRate" expression="0.03"/>
+            <assign variable="annualExpense" expression="50000"/>
+            <assign variable="maxYears" expression="40"/>
+            <assign variable="yearsLeft" expression="ReadNumber(&quot;Enter the number of years left in your career: &quot;)"/>
+            <assign variable="annualSavings" expression="ReadNumber(&quot;Enter your annual savings: &quot;)"/>
+            <assign variable="totalSavings" expression="0"/>
+            <for variable="year" start="1" end="yearsLeft" direction="inc" step="1">
+                <assign variable="totalSavings" expression="totalSavings + annualSavings"/>
+                <assign variable="totalSavings" expression="totalSavings * (1 + interestRate)"/>
+            </for>
+            <assign variable="balance" expression="totalSavings"/>
+            <output expression="totalSavings" newline="True"/>
+            <assign variable="year" expression="0"/>
+            <while expression="year &lt;= maxYears and balance &gt; 0">
+                <output expression="&quot;Year &quot; &amp; year &amp; &quot;: &quot; &amp; balance" newline="True"/>
+                <assign variable="balance" expression="balance - annualExpense"/>
+                <assign variable="balance" expression="balance * (1 + interestRate)"/>
+                <assign variable="year" expression="year + 1"/>
+            </while>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
