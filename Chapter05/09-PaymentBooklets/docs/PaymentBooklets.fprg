@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="PaymentBooklets"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-28 01:08:01 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMjg7MTI6NTk6MjAgcC4gbS47MzQxNg=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7TEFUSVRVREU3NDkwOzIwMjQtMTAtMjg7MDE6MDg6MDEgcC4gbS47MTszNTE1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Desplegar los datos de cada talonario de pago."/>
+            <declare name="buildings, departmentsPerBuilding, rentPerMonth, months, building, department, month" type="Integer" array="False" size=""/>
+            <assign variable="buildings" expression="20"/>
+            <assign variable="departmentsPerBuilding" expression="15"/>
+            <assign variable="rentPerMonth" expression="800"/>
+            <assign variable="months" expression="12"/>
+            <for variable="building" start="1" end="buildings" direction="inc" step="1">
+                <for variable="department" start="1" end="departmentsPerBuilding" direction="inc" step="1">
+                    <for variable="month" start="1" end="months" direction="inc" step="1">
+                        <output expression="&quot;Building: &quot; &amp; building &amp; &quot; Department: &quot; &amp; department &amp; &quot; Month: &quot; &amp; month &amp; &quot; Rent: &quot; &amp; rentPerMonth" newline="True"/>
+                    </for>
+                </for>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
