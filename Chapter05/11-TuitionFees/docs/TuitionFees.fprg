@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="TuitionFees"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-30 02:08:05 p. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTMwOzAxOjQ5OjAxIHAuIG0uOzI4Nzg="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTEwLTMwOzAyOjA4OjA1IHAuIG0uOzE7Mjk4Ng=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Mostrar el talonario de pago mensual de cada sal&#243;n de clases."/>
+            <declare name="classroomsPerGrade, grades, months, tuitionFeeKindergarten, tuitionFeeOthers" type="Integer" array="False" size=""/>
+            <assign variable="classroomsPerGrade" expression="3"/>
+            <assign variable="grades" expression="9"/>
+            <assign variable="months" expression="9"/>
+            <assign variable="tuitionFeeKindergarten" expression="80"/>
+            <assign variable="tuitionFeeOthers" expression="60"/>
+            <declare name="classroom, grade, month" type="Integer" array="False" size=""/>
+            <for variable="grade" start="0" end="grades - 1" direction="inc" step="1">
+                <for variable="classroom" start="1" end="classroomsPerGrade" direction="inc" step="1">
+                    <for variable="month" start="1" end="months" direction="inc" step="1">
+                        <if expression="grade == 0">
+                            <then>
+                                <output expression="&quot;Grade: &quot; &amp; grade &amp; &quot; Classroom: &quot; &amp; classroom &amp; &quot; Month: &quot; &amp; month &amp; &quot; Tuition: &quot; &amp; tuitionFeeKindergarten" newline="True"/>
+                            </then>
+                            <else>
+                                <output expression="&quot;Grade: &quot; &amp; grade &amp; &quot; Classroom: &quot; &amp; classroom &amp; &quot; Month: &quot; &amp; month &amp; &quot; Tuition: &quot; &amp; tuitionFeeOthers" newline="True"/>
+                            </else>
+                        </if>
+                    </for>
+                </for>
+            </for>
+            <output expression="&quot;Program finished&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
