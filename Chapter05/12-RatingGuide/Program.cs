@@ -9,6 +9,9 @@ class Program
         int totalStars = default;
         int totalClients = default;
         double avgStars = default;
+        int count = default;
+
+        const int ATTEMPTS = 3;
 
         stars = ReadInteguer("Enter the number of stars between 0 and 4: ");
 
@@ -16,7 +19,17 @@ class Program
         {
             if (stars > 4)
             {
-                WriteLine("The number of stars must be between 0 and 4.");
+                count++;
+                if (count < ATTEMPTS)
+                {
+                    WriteLine("The number of stars must be between 0 and 4.");
+                }
+                else
+                {
+                    WriteLine("We can't continue, please get assistant for rate your movie. Press any key to continue...");
+                    ReadKey();
+                    count = 0;
+                }
             }
             else
             {
@@ -30,7 +43,7 @@ class Program
         if (totalClients > 0)
         {
             avgStars = (double)totalStars / totalClients;
-            WriteLine($"The average number of stars is {avgStars}.");
+            WriteLine($"The average number of stars is {avgStars:N}.");
         }
         else
         {
