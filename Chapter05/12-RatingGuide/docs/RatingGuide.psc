@@ -11,6 +11,12 @@
         final del programa, despliegue la clasificación de estrellas
         promedio para la película.
 
+        a) Modifique el programa de la clasificación de películas de modo
+        que un usuario tenga tres intentos para introducir una
+        clasificación válida. Después de tres entradas incorrectas, el
+        programa emite un mensaje apropiado y continua con un usuario
+        nuevo.
+
     Objetivos:
         Desplegar la clasificación de estrellas promedio
 
@@ -30,8 +36,11 @@ Main
         num totalStars
         num totalClients
         num avgStars
+        num count
+        const ATTEMPTS = 3
     end declare
 
+    set count = 0
     set totalStars = 0
     set totalClients = 0
 
@@ -39,7 +48,13 @@ Main
 
     while stars >= 0 do
         if stars > 4 then
-            output "The number of stars must be between 0 and 4."
+            count = count + 1
+            if count < ATTEMPTS then
+                output "The number of stars must be between 0 and 4."
+            else
+                output "We can't continue, please get assistant for rate your movie."
+                count = 0
+            end if
         else
             set totalStars = totalStars + stars
             set totalClients = totalClients + 1
