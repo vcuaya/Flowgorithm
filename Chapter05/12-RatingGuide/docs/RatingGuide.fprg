@@ -4,22 +4,33 @@
         <attribute name="name" value="RatingGuide"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-11-01 11:52:25 a. m."/>
+        <attribute name="saved" value="2024-11-01 03:09:21 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTExLTAxOzExOjExOjU0IGEuIG0uOzI4NjA="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTExLTAxOzExOjUyOjI1IGEuIG0uOzE7Mjk3MQ=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTExLTAxOzAzOjA5OjIxIHAuIG0uOzI7Mjk4Ng=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <comment text="Desplegar la clasificaci&#243;n de estrellas promedio"/>
-            <declare name="stars, totalStars, totalClients, avgStars" type="Real" array="False" size=""/>
+            <declare name="stars, totalStars, totalClients, avgStars, count, attempts" type="Real" array="False" size=""/>
+            <assign variable="attempts" expression="3"/>
+            <assign variable="count" expression="0"/>
             <assign variable="totalStars" expression="0"/>
             <assign variable="totalClients" expression="0"/>
             <assign variable="stars" expression="ReadNumber(&quot;Enter the number of stars between 0 and 4: &quot;)"/>
             <while expression="stars &gt;= 0">
                 <if expression="stars &gt; 4">
                     <then>
-                        <output expression="&quot;The number of stars must be between 0 and 4.&quot;" newline="True"/>
+                        <assign variable="count" expression="count + 1"/>
+                        <if expression="count &lt; attempts">
+                            <then>
+                                <output expression="&quot;The number of stars must be between 0 and 4.&quot;" newline="True"/>
+                            </then>
+                            <else>
+                                <output expression="&quot;We can't continue, please get assistant for rate your movie.&quot;" newline="True"/>
+                                <assign variable="count" expression="0"/>
+                            </else>
+                        </if>
                     </then>
                     <else>
                         <assign variable="totalStars" expression="totalStars + stars"/>
