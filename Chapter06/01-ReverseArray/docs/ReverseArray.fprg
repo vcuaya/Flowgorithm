@@ -4,21 +4,26 @@
         <attribute name="name" value="ReverseArray"/>
         <attribute name="authors" value="VictorCuaya"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-11-02 11:28:07 a. m."/>
+        <attribute name="saved" value="2024-11-02 04:20:12 p. m."/>
         <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTExLTAyOzEwOjEyOjEyIGEuIG0uOzI4NTU="/>
-        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTExLTAyOzExOjI4OjA3IGEuIG0uOzE7Mjk3NQ=="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTExLTAyOzA0OjIwOjEyIHAuIG0uOzM7Mjk4Mg=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <comment text="Desplegar los datos en orden inverso."/>
-            <declare name="size, index" type="Integer" array="False" size=""/>
-            <assign variable="size" expression="15"/>
+            <declare name="sentinel, size, index, number" type="Integer" array="False" size=""/>
+            <assign variable="size" expression="100"/>
+            <assign variable="index" expression="0"/>
+            <assign variable="sentinel" expression="0"/>
             <declare name="numbers" type="Real" array="True" size="size"/>
-            <for variable="index" start="0" end="size - 1" direction="inc" step="1">
-                <assign variable="numbers[index]" expression="ReadNumber(&quot;Enter an integer number [&quot; &amp; (index + 1) &amp; &quot;]: &quot;)"/>
-            </for>
-            <for variable="index" start="size - 1" end="0" direction="dec" step="1">
+            <assign variable="number" expression="ReadNumber(&quot;Enter an integer number or &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+            <while expression="number != sentinel">
+                <assign variable="numbers[index]" expression="number"/>
+                <assign variable="number" expression="ReadNumber(&quot;Enter an integer number or &quot; &amp; SENTINEL &amp; &quot; to finish: &quot;)"/>
+                <assign variable="index" expression="index + 1"/>
+            </while>
+            <for variable="index" start="index - 1" end="0" direction="dec" step="1">
                 <output expression="&quot;Number [&quot; &amp; (index + 1) &amp; &quot;]: &quot; &amp; numbers[index]" newline="True"/>
             </for>
             <output expression="&quot;Program finished.&quot;" newline="True"/>
