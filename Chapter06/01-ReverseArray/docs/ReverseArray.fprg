@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ReverseArray"/>
+        <attribute name="authors" value="VictorCuaya"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-11-02 11:28:07 a. m."/>
+        <attribute name="created" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTExLTAyOzEwOjEyOjEyIGEuIG0uOzI4NTU="/>
+        <attribute name="edited" value="VmljdG9yQ3VheWE7REVMTDsyMDI0LTExLTAyOzExOjI4OjA3IGEuIG0uOzE7Mjk3NQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Desplegar los datos en orden inverso."/>
+            <declare name="size, index" type="Integer" array="False" size=""/>
+            <assign variable="size" expression="15"/>
+            <declare name="numbers" type="Real" array="True" size="size"/>
+            <for variable="index" start="0" end="size - 1" direction="inc" step="1">
+                <assign variable="numbers[index]" expression="ReadNumber(&quot;Enter an integer number [&quot; &amp; (index + 1) &amp; &quot;]: &quot;)"/>
+            </for>
+            <for variable="index" start="size - 1" end="0" direction="dec" step="1">
+                <output expression="&quot;Number [&quot; &amp; (index + 1) &amp; &quot;]: &quot; &amp; numbers[index]" newline="True"/>
+            </for>
+            <output expression="&quot;Program finished.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="ReadNumber" type="Real" variable="number">
+        <parameters>
+            <parameter name="message" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="number" type="Real" array="False" size=""/>
+            <output expression="message" newline="True"/>
+            <input variable="number"/>
+        </body>
+    </function>
+</flowgorithm>
