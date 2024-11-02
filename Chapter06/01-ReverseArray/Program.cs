@@ -5,24 +5,35 @@ class Program
 {
     static void Main(string[] args)
     {
-        const int SIZE = 15;
-        int[] numbers = new int[SIZE];
+        const int SENTINEL = 0;
+        const int SIZE = 100;
 
-        for (int index = 0; index < SIZE; index++)
+        int[] numbers = new int[SIZE];
+        int number = default;
+        int index = default;
+
+        number = ReadInteger($"Enter an integer number or {SENTINEL} to finish: ");
+
+        while (number != SENTINEL)
         {
-            numbers[index] = ReadInteger($"Enter an integer number [{index + 1,2}]: ");
+            numbers[index] = number;
+            number = ReadInteger($"Enter an integer number or {SENTINEL} to finish: ");
+            index++;
         }
 
-        Write("Numbers in reverse order: ");
-        for (int index = SIZE - 1; index >= 0; index--)
+        if (index > 0)
         {
-            if (index == 0)
+            Write("Numbers in reverse order: ");
+            for (index = index - 1; index >= 0; index--)
             {
-                Write($"{numbers[index]}.");
-            }
-            else
-            {
-                Write($"{numbers[index]}, ");
+                if (index == 0)
+                {
+                    Write($"{numbers[index]}.");
+                }
+                else
+                {
+                    Write($"{numbers[index]}, ");
+                }
             }
         }
 
